@@ -1,4 +1,3 @@
-"""Tests for Phase 7 — overload signal evaluation and pacing logic."""
 from odinclaw.odin.state.overload import (
     PACING_NONE,
     PACING_ACTIVE,

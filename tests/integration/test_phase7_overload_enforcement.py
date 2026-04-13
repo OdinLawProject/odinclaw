@@ -1,4 +1,3 @@
-"""Integration tests for Phase 7 — overload enforcement through the full lifecycle."""
 from pathlib import Path
 
 from odinclaw.contracts.action_classes import ActionClass
@@ -37,7 +36,6 @@ class TestStabilityRegulation:
         lifecycle.exit_degraded_mode(reason="recovered")
 
         decision = lifecycle.preflight(_operator_request(ActionClass.NAVIGATION_ONLY))
-        # Navigation-only from trusted operator should be allowed after recovery.
         assert decision.outcome == GovernanceOutcome.ALLOW
 
 
@@ -77,7 +75,6 @@ class TestConcurrentHoldPacing:
         lifecycle.startup()
         assert lifecycle.concurrent_holds == 0
 
-        # Destructive action → HOLD
         decision = lifecycle.preflight(_operator_request(ActionClass.DESTRUCTIVE_ACTION))
         assert decision.outcome == GovernanceOutcome.HOLD
         assert lifecycle.concurrent_holds == 1

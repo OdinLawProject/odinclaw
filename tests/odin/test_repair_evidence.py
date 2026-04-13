@@ -1,4 +1,3 @@
-"""Tests for Phase 6 — repair evidence and degraded mode transitions."""
 from pathlib import Path
 
 from odinclaw.odin.orchestration.lifecycle import build_lifecycle

@@ -71,7 +71,6 @@ class OdinClawLifecycle:
     action_gate_open: bool = False
     startup_steps: list[str] = field(default_factory=list)
     shutdown_steps: list[str] = field(default_factory=list)
-    # Phase 7: concurrent hold tracking for pacing
     concurrent_holds: int = 0
 
     def startup(self) -> ShellExtensionState:
@@ -99,7 +98,6 @@ class OdinClawLifecycle:
         return self.shell_state(shutdown_ready=True)
 
     def _current_overload_signal(self) -> OverloadSignal:
-        """Compute the current overload signal without building the full shell state."""
         receipt_count = self.services.receipt_chain.count()
         continuity_count = self.services.continuity_store.count()
         memory_snapshot = self.services.memory_authority.snapshot()
@@ -133,17 +131,14 @@ class OdinClawLifecycle:
         )
 
     def preflight(self, request: ActionRequest) -> GovernanceDecision:
-        # Phase 7 — stability regulation: check overload before governance logic.
         overload = self._current_overload_signal()
         if overload.level == PACING_HOLD_NEW:
-            # Stability is degraded or burden is critical — hold all new actions.
             return GovernanceDecision(
                 outcome=GovernanceOutcome.HOLD,
                 reason=f"overload_gate: {', '.join(overload.reasons) or overload.level}",
                 risk_notes=tuple(overload.reasons),
             )
 
-        # Phase 7 — pacing: at HIGH burden, enforce concurrent hold cap.
         if overload.level == PACING_ACTIVE:
             cap = concurrent_hold_cap_for(overload.burden_level)
             if self.concurrent_holds >= cap:
@@ -166,16 +161,10 @@ class OdinClawLifecycle:
         return decision
 
     def release_hold(self) -> None:
-        """Call when a held action is approved or denied to decrement the hold counter."""
         if self.concurrent_holds > 0:
             self.concurrent_holds -= 1
 
-    # ------------------------------------------------------------------
-    # Phase 6 — Repair: degraded mode transitions with repair receipts.
-    # ------------------------------------------------------------------
-
     def enter_degraded_mode(self, *, reason: str) -> RepairReceiptRecord:
-        """Enter degraded mode and emit a repair receipt."""
         from odinclaw.contracts.action_ids import new_action_id, new_run_id, new_session_id
         from odinclaw.contracts.action_ids import TraceIds
         trace_ids = TraceIds(
@@ -193,7 +182,6 @@ class OdinClawLifecycle:
         return receipt
 
     def exit_degraded_mode(self, *, reason: str) -> RepairReceiptRecord:
-        """Exit degraded mode and emit a repair receipt."""
         from odinclaw.contracts.action_ids import new_action_id, new_run_id, new_session_id
         from odinclaw.contracts.action_ids import TraceIds
         trace_ids = TraceIds(
@@ -218,7 +206,6 @@ class OdinClawLifecycle:
         rolled_back_action_name: str | None = None,
         restored_to_checkpoint: str | None = None,
     ) -> RepairReceiptRecord:
-        """Record a rollback event with evidence and emit a repair receipt."""
         from odinclaw.contracts.action_ids import new_action_id, new_run_id, new_session_id
         from odinclaw.contracts.action_ids import TraceIds
         trace_ids = TraceIds(
@@ -292,7 +279,6 @@ class OdinClawLifecycle:
                 active_conflicts=self.services.conflict_store.count(),
             )
         )
-        # Phase 7 — overload signal computed from burden + stability.
         overload_signal = evaluate_overload(
             burden_level=burden.level,
             stability_status=stability.status,

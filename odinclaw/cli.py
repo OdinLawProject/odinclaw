@@ -1,23 +1,9 @@
-"""OdinClaw CLI — launch and interact with the governing substrate.
-
-Commands
---------
-odinclaw start          Start an interactive session (default data dir: ~/.odinclaw)
-odinclaw start --data <path>   Start with a custom data directory
-odinclaw status         Print current extension state and exit
-odinclaw status --data <path>  Status for a specific data dir
-"""
-
 from __future__ import annotations
 
 import argparse
 import json
 import sys
 from pathlib import Path
-
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
 
 _DEFAULT_DATA_DIR = Path.home() / ".odinclaw"
 
@@ -29,7 +15,6 @@ def _resolve_data_dir(raw: str | None) -> Path:
 
 
 def _print_state(state) -> None:
-    """Pretty-print the ShellExtensionState."""
     sep = "-" * 52
     lines = [
         "",
@@ -75,10 +60,6 @@ def _print_state(state) -> None:
     ]
     print("\n".join(lines))
 
-
-# ---------------------------------------------------------------------------
-# Commands
-# ---------------------------------------------------------------------------
 
 def cmd_status(args: argparse.Namespace) -> int:
     from odinclaw.shell.hooks import attach_odinclaw_shell
@@ -134,14 +115,14 @@ def cmd_start(args: argparse.Namespace) -> int:
         if raw in {"help", "?"}:
             print(
                 "\n"
-                "  status          — show current extension state\n"
-                "  preflight <cls> — run a governance preflight (action classes:\n"
+                "  status          -- show current extension state\n"
+                "  preflight <cls> -- run a governance preflight (action classes:\n"
                 "                    NAVIGATION_ONLY, READ_ONLY_EXTERNAL, DESTRUCTIVE_ACTION,\n"
                 "                    DURABLE_INTERNAL_STATE_MUTATION, CREDENTIALED_ACTION)\n"
-                "  memory          — show memory snapshot\n"
-                "  degraded        — enter degraded mode\n"
-                "  recover         — exit degraded mode\n"
-                "  quit            — shutdown and exit\n"
+                "  memory          -- show memory snapshot\n"
+                "  degraded        -- enter degraded mode\n"
+                "  recover         -- exit degraded mode\n"
+                "  quit            -- shutdown and exit\n"
             )
             continue
 
@@ -159,13 +140,13 @@ def cmd_start(args: argparse.Namespace) -> int:
 
         if raw == "degraded":
             r = bridge.lifecycle.enter_degraded_mode(reason="cli-requested")
-            print(f"  [repair] entered degraded mode — receipt {r.trace_ids.action_id[:8]}")
+            print(f"  [repair] entered degraded mode -- receipt {r.trace_ids.action_id[:8]}")
             _print_state(bridge.extension_state())
             continue
 
         if raw == "recover":
             r = bridge.lifecycle.exit_degraded_mode(reason="cli-recovery")
-            print(f"  [repair] exited degraded mode — receipt {r.trace_ids.action_id[:8]}")
+            print(f"  [repair] exited degraded mode -- receipt {r.trace_ids.action_id[:8]}")
             _print_state(bridge.extension_state())
             continue
 
@@ -191,31 +172,25 @@ def cmd_start(args: argparse.Namespace) -> int:
                 print(f"    notes   : {', '.join(decision.risk_notes)}")
             continue
 
-        print(f"  unknown command '{raw}' — type 'help' for commands")
+        print(f"  unknown command '{raw}' -- type 'help' for commands")
 
-    print("\n[odinclaw] shutting down…")
+    print("\n[odinclaw] shutting down...")
     shutdown_state = bridge.shutdown()
-    print(f"[odinclaw] shutdown complete — receipts: {shutdown_state.audit.receipt_count}")
+    print(f"[odinclaw] shutdown complete -- receipts: {shutdown_state.audit.receipt_count}")
     return 0
 
-
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(
         prog="odinclaw",
-        description="OdinClaw — governed AI substrate CLI",
+        description="OdinClaw -- governed AI substrate CLI",
     )
     sub = parser.add_subparsers(dest="command")
 
-    # start
     p_start = sub.add_parser("start", help="Open an interactive OdinClaw session")
     p_start.add_argument("--data", metavar="PATH", help="Data directory (default: ~/.odinclaw)")
     p_start.add_argument("--session", metavar="NAME", help="Session name (default: cli-session)")
 
-    # status
     p_status = sub.add_parser("status", help="Print extension state and exit")
     p_status.add_argument("--data", metavar="PATH", help="Data directory (default: ~/.odinclaw)")
 
