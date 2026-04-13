@@ -5,10 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "odinclaw"
 version = "0.1.0"
-description = "OdinClaw: OpenClaw shell with ODIN governing substrate"
+description = "OdinClaw: ODIN governed AI substrate"
 readme = "README.md"
 requires-python = ">=3.12"
-# OdinClaw core has zero external runtime dependencies — stdlib only.
+authors = [{name = "Borr"}]
 dependencies = []
 
 [project.scripts]
