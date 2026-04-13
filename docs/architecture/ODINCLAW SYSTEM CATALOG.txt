@@ -1,0 +1,304 @@
+ODINCLAW SYSTEM CATALOG
+==================================================
+CATALOG RULE:
+Canonical OdinClaw layers, systems, and subsystems below are the derived-product body-plan built from OpenClaw shell ownership and ODIN substrate ownership.
+
+INTERFACE / SESSION SURFACE LAYER
+----------------
+ROLE: Owns the outward interactive shell, live session loop, and user-facing runtime state for OdinClaw.
+DEFAULT PHASE: P0-P1
+
+SYSTEM: Session Runtime System
+ROLE: Maintains live session identity, run-local state, and trace linkage between OpenClaw sessions and ODIN continuity.
+BUILD PHASE: P0
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: OpenClaw shell with ODIN trace bridge
+- session registry [PARTIAL] (P0)
+- run state tracker [PARTIAL] (P0)
+- trace id allocator [PARTIAL] (P0)
+- session compactor [PROTO-FORM] (P1)
+
+SYSTEM: Interaction Surface System
+ROLE: Handles ingress and egress across the OdinClaw conversational and command surface.
+BUILD PHASE: P0
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: OpenClaw shell
+- chat ingress adapter [PARTIAL] (P0)
+- command parser [PARTIAL] (P0)
+- operator response formatter [PARTIAL] (P0)
+- surface state notifier [PROTO-FORM] (P1)
+
+EXECUTION SURFACE LAYER
+----------------
+ROLE: Owns the shell-level execution surfaces while allowing ODIN to gate risky use.
+DEFAULT PHASE: P0-P4
+
+SYSTEM: Browser Execution System
+ROLE: Provides controlled browser interaction as an OdinClaw execution surface.
+BUILD PHASE: P0
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: OpenClaw shell gated by ODIN
+- browser action adapter [PARTIAL] (P0)
+- navigation executor [PARTIAL] (P0)
+- DOM capture bridge [PARTIAL] (P1)
+- mutation action guard [PROTO-FORM] (P4)
+
+SYSTEM: Tool Execution System
+ROLE: Runs non-browser tools through governed envelopes and normalized outputs.
+BUILD PHASE: P0
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: OpenClaw shell gated by ODIN
+- tool invocation bridge [PARTIAL] (P0)
+- tool result normalizer [PARTIAL] (P0)
+- execution envelope [PARTIAL] (P1)
+- tool timeout handler [PROTO-FORM] (P1)
+
+SYSTEM: Plugin Host System
+ROLE: Maintains plugin loading and capability exposure while allowing ODIN to add trust and governance overlays.
+BUILD PHASE: P0
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: OpenClaw shell
+- plugin registry [PARTIAL] (P0)
+- plugin capability manifest [PARTIAL] (P0)
+- plugin isolation adapter [PROTO-FORM] (P1)
+- plugin lifecycle manager [PROTO-FORM] (P1)
+
+GOVERNANCE / RISK LAYER
+----------------
+ROLE: Ensures action legality, approvals, and risk classification occur before meaningful external or durable internal change.
+DEFAULT PHASE: P4
+
+SYSTEM: Action Legality System
+ROLE: Applies ODIN policy before risky action, memory mutation, or external state change.
+BUILD PHASE: P4
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: ODIN
+- preflight evaluator [PARTIAL] (P4)
+- action class mapper [PARTIAL] (P4)
+- policy check engine [PARTIAL] (P4)
+- deny / hold dispatcher [PARTIAL] (P4)
+
+SYSTEM: Approval System
+ROLE: Handles operator approval and higher-risk release decisions.
+BUILD PHASE: P4
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: ODIN
+- approval request builder [PARTIAL] (P4)
+- approval state tracker [PARTIAL] (P4)
+- operator approval bridge [PARTIAL] (P4)
+- decision receipt emitter [PARTIAL] (P4)
+
+SYSTEM: Risk Classification System
+ROLE: Assigns stable risk envelopes to actions, tools, memory mutations, and external effects.
+BUILD PHASE: P4
+CURRENT STATUS: PROTO-FORM
+PRIMARY OWNER: ODIN
+- risk envelope classifier [PROTO-FORM] (P4)
+- credentialed action detector [PROTO-FORM] (P4)
+- destructive action detector [PROTO-FORM] (P4)
+- risk escalation scorer [PROTO-FORM] (P4)
+
+TRUST / BOUNDARY LAYER
+----------------
+ROLE: Makes intake, source handling, and boundary negotiation explicit rather than naive.
+DEFAULT PHASE: P5
+
+SYSTEM: Input Classification System
+ROLE: Classifies pages, plugins, providers, attachments, operators, and recalled knowledge by trust relationship.
+BUILD PHASE: P5
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN
+- source classifier [ASPIRATIONAL] (P5)
+- self / non-self classifier [ASPIRATIONAL] (P5)
+- content trust annotator [ASPIRATIONAL] (P5)
+- ambiguity holder [ASPIRATIONAL] (P5)
+
+SYSTEM: Trust Threshold System
+ROLE: Converts classification and provenance into operational allow, restrict, hold, or block behavior.
+BUILD PHASE: P5
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN
+- trust score register [ASPIRATIONAL] (P5)
+- threshold evaluator [ASPIRATIONAL] (P5)
+- trust downgrade handler [ASPIRATIONAL] (P5)
+- trust upgrade handler [ASPIRATIONAL] (P5)
+
+SYSTEM: Read-Only Reader System
+ROLE: Provides a low-trust ingestion path that can inspect unsafe content without granting execution authority.
+BUILD PHASE: P5
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN-backed adapter over OpenClaw surfaces
+- safe fetch adapter [ASPIRATIONAL] (P5)
+- content sanitizer [ASPIRATIONAL] (P5)
+- distilled output builder [ASPIRATIONAL] (P5)
+- reader provenance emitter [ASPIRATIONAL] (P5)
+
+CONTINUITY / IDENTITY LAYER
+----------------
+ROLE: Carries continuity, inherited doctrine, and identity-preserving state across runs and sessions.
+DEFAULT PHASE: P1-P3
+
+SYSTEM: Continuity Evidence System
+ROLE: Links actions, sessions, memories, and repairs into a continuous lineage.
+BUILD PHASE: P1
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: ODIN
+- continuity link writer [PARTIAL] (P1)
+- run continuity correlator [PARTIAL] (P1)
+- cross-session continuity linker [PARTIAL] (P1)
+- continuity violation detector [PROTO-FORM] (P2)
+
+SYSTEM: Identity / Doctrine Inheritance System
+ROLE: Carries ODIN base views, doctrine, and identity-value continuity into OdinClaw behavior.
+BUILD PHASE: P2
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: ODIN
+- inherited doctrine store [PARTIAL] (P2)
+- identity continuity injector [PARTIAL] (P2)
+- value continuity injector [PARTIAL] (P2)
+- doctrine version tracker [PROTO-FORM] (P2)
+
+MEMORY / KNOWLEDGE LAYER
+----------------
+ROLE: Provides durable memory authority, contradiction retention, and governed Codex-backed knowledge access.
+DEFAULT PHASE: P2-P3
+
+SYSTEM: Durable Memory Authority System
+ROLE: Owns long-horizon durable memory and arbitrates against session-local memory.
+BUILD PHASE: P3
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: ODIN
+- durable memory writer [PARTIAL] (P3)
+- memory arbitration engine [PARTIAL] (P3)
+- canon / provisional splitter [PARTIAL] (P3)
+- memory recall gate [PARTIAL] (P3)
+
+SYSTEM: Conflict Memory System
+ROLE: Retains contradictions, unresolved tensions, and repeated failures so they affect future behavior.
+BUILD PHASE: P3-P5
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN
+- contradiction record writer [ASPIRATIONAL] (P3)
+- conflict resurfacer [ASPIRATIONAL] (P5)
+- unresolved tension tracker [ASPIRATIONAL] (P5)
+- confidence warning emitter [ASPIRATIONAL] (P5)
+
+SYSTEM: Codex Knowledge System
+ROLE: Provides structured doctrine and trusted knowledge packs without becoming an uncontrolled context dump.
+BUILD PHASE: P3
+CURRENT STATUS: PROTO-FORM
+PRIMARY OWNER: ODIN
+- codex pack loader [PROTO-FORM] (P3)
+- provenance-rated retriever [PROTO-FORM] (P3)
+- doctrine pack selector [PROTO-FORM] (P3)
+- workflow packet registry [ASPIRATIONAL] (P6)
+
+CONTEXT / ORCHESTRATION LAYER
+----------------
+ROLE: Turns durable memory, doctrine, trust, and current task state into a compact actionable runtime context.
+DEFAULT PHASE: P2-P6
+
+SYSTEM: Context Assembly System
+ROLE: Builds runtime context using continuity, doctrine, trust, conflict, and relevance.
+BUILD PHASE: P2
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: ODIN-backed context engine
+- context budgeter [PARTIAL] (P2)
+- continuity context selector [PARTIAL] (P2)
+- trust-aware inclusion filter [ASPIRATIONAL] (P5)
+- context report emitter [PARTIAL] (P2)
+
+SYSTEM: Routing / Workflow Packet System
+ROLE: Chooses recurring routes and reusable workflow packets instead of re-planning every common task from scratch.
+BUILD PHASE: P6
+CURRENT STATUS: PROTO-FORM
+PRIMARY OWNER: OpenClaw routing with ODIN overlays
+- workflow packet selector [PROTO-FORM] (P6)
+- route chooser [PROTO-FORM] (P6)
+- fallback route chooser [PROTO-FORM] (P6)
+- recurring task matcher [PROTO-FORM] (P6)
+
+AUDIT / RECOVERY LAYER
+----------------
+ROLE: Provides durable traceability, provenance, rollback evidence, and repair behavior.
+DEFAULT PHASE: P1-P6
+
+SYSTEM: Receipt Chain System
+ROLE: Creates the durable audit chain for meaningful OdinClaw actions and decisions.
+BUILD PHASE: P1
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: ODIN
+- receipt writer [PARTIAL] (P1)
+- receipt hash linker [PARTIAL] (P1)
+- receipt verifier [PARTIAL] (P1)
+- receipt query index [PARTIAL] (P1)
+
+SYSTEM: Provenance System
+ROLE: Attaches source, route, and authority metadata to actions, memories, and provider outputs.
+BUILD PHASE: P1
+CURRENT STATUS: PARTIAL
+PRIMARY OWNER: ODIN
+- action provenance collector [PARTIAL] (P1)
+- provider provenance collector [PARTIAL] (P1)
+- memory provenance collector [PARTIAL] (P3)
+- provenance export formatter [PARTIAL] (P1)
+
+SYSTEM: Repair / Rollback System
+ROLE: Provides governed recovery when actions fail, contradictions accumulate, or unsafe state must be undone.
+BUILD PHASE: P6
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN
+- rollback evidence linker [ASPIRATIONAL] (P6)
+- recovery planner [ASPIRATIONAL] (P6)
+- degraded-mode switcher [ASPIRATIONAL] (P6)
+- repair receipt writer [ASPIRATIONAL] (P6)
+
+STATE / SUPPORT LAYER
+----------------
+ROLE: Introduces burden awareness and basic homeostatic regulation so OdinClaw is not a stateless shell under load.
+DEFAULT PHASE: P7
+
+SYSTEM: Burden Signaling System
+ROLE: Detects overload, repeated failure pressure, and runtime strain.
+BUILD PHASE: P7
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN
+- load monitor [ASPIRATIONAL] (P7)
+- failure pressure counter [ASPIRATIONAL] (P7)
+- queue burden signaler [ASPIRATIONAL] (P7)
+- overload alert emitter [ASPIRATIONAL] (P7)
+
+SYSTEM: Stability Regulation System
+ROLE: Converts burden and continuity signals into pacing, safe-holds, and basic homeostatic behavior.
+BUILD PHASE: P7
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN
+- stability signal aggregator [ASPIRATIONAL] (P7)
+- pace governor [ASPIRATIONAL] (P7)
+- concurrency limiter [ASPIRATIONAL] (P7)
+- safe-hold trigger [ASPIRATIONAL] (P7)
+
+FEDERATION / REPLICATION LAYER
+----------------
+ROLE: Adds multi-node continuity only after the single-node core is coherent.
+DEFAULT PHASE: P8
+
+SYSTEM: Federation Readiness System
+ROLE: Enforces the single-node completion gate before federation is allowed.
+BUILD PHASE: P8
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN
+- single-node readiness gate [ASPIRATIONAL] (P8)
+- federated contract validator [ASPIRATIONAL] (P8)
+- sync safety checker [ASPIRATIONAL] (P8)
+- federation unlock receipt [ASPIRATIONAL] (P8)
+
+SYSTEM: Federated Continuity System
+ROLE: Extends OdinClaw continuity and receipts across multiple nodes after readiness is satisfied.
+BUILD PHASE: P8
+CURRENT STATUS: ASPIRATIONAL
+PRIMARY OWNER: ODIN
+- cross-node receipt replicator [ASPIRATIONAL] (P8)
+- federated memory sync bridge [ASPIRATIONAL] (P8)
+- node identity coordinator [ASPIRATIONAL] (P8)
+- divergence detector [ASPIRATIONAL] (P8)

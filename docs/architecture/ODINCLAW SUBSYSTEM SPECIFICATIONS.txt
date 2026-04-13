@@ -1,0 +1,1502 @@
+ODINCLAW SUBSYSTEM SPECIFICATIONS
+==================================================
+
+SUBSYSTEM NAME: session registry
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+PARENT SYSTEM: Session Runtime System
+
+PURPOSE: Stores active session identities and runtime handles.
+FUNCTION: Stores active session identities and runtime handles.
+MECHANISM: Maps user-facing sessions to internal trace IDs and run state.
+INPUTS: session or local runtime signals
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Session Runtime System
+DEPENDENCIES: Action Legality System, Stability Regulation System
+CONSTRAINTS: Must obey OpenClaw shell with ODIN trace bridge ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Session Runtime System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make session runtime system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: run state tracker
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+PARENT SYSTEM: Session Runtime System
+
+PURPOSE: Tracks current run-local state for each session.
+FUNCTION: Tracks current run-local state for each session.
+MECHANISM: Publishes run phase, active action, and pending transitions.
+INPUTS: session or local runtime signals
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Session Runtime System
+DEPENDENCIES: Action Legality System, Stability Regulation System
+CONSTRAINTS: Must obey OpenClaw shell with ODIN trace bridge ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Session Runtime System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make session runtime system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: trace id allocator
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+PARENT SYSTEM: Session Runtime System
+
+PURPOSE: Creates stable trace IDs shared with ODIN receipts.
+FUNCTION: Creates stable trace IDs shared with ODIN receipts.
+MECHANISM: Allocates deterministic IDs for runs, actions, and session lineage.
+INPUTS: session or local runtime signals
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Session Runtime System
+DEPENDENCIES: Action Legality System, Stability Regulation System
+CONSTRAINTS: Must obey OpenClaw shell with ODIN trace bridge ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Session Runtime System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make session runtime system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: session compactor
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+PARENT SYSTEM: Session Runtime System
+
+PURPOSE: Shrinks local session state without losing runtime fluency.
+FUNCTION: Shrinks local session state without losing runtime fluency.
+MECHANISM: Compacts expired ephemeral context while preserving current session usability.
+INPUTS: session or local runtime signals
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Session Runtime System
+DEPENDENCIES: Action Legality System, Stability Regulation System
+CONSTRAINTS: Must obey OpenClaw shell with ODIN trace bridge ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Session Runtime System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make session runtime system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: chat ingress adapter
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+PARENT SYSTEM: Interaction Surface System
+
+PURPOSE: Receives user-facing text/session input.
+FUNCTION: Receives user-facing text/session input.
+MECHANISM: Normalizes surface input into action-intent packets.
+INPUTS: Session Runtime System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Interaction Surface System
+DEPENDENCIES: Session Runtime System, Action Legality System, Trust Threshold System
+CONSTRAINTS: Must obey OpenClaw shell ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Interaction Surface System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make interaction surface system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: command parser
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+PARENT SYSTEM: Interaction Surface System
+
+PURPOSE: Parses explicit directives and action requests.
+FUNCTION: Parses explicit directives and action requests.
+MECHANISM: Classifies direct commands before routing to governance and context layers.
+INPUTS: Session Runtime System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Interaction Surface System
+DEPENDENCIES: Session Runtime System, Action Legality System, Trust Threshold System
+CONSTRAINTS: Must obey OpenClaw shell ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Interaction Surface System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make interaction surface system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: operator response formatter
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+PARENT SYSTEM: Interaction Surface System
+
+PURPOSE: Formats OdinClaw outputs for the surface.
+FUNCTION: Formats OdinClaw outputs for the surface.
+MECHANISM: Separates raw internal state from user-visible responses.
+INPUTS: Session Runtime System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Interaction Surface System
+DEPENDENCIES: Session Runtime System, Action Legality System, Trust Threshold System
+CONSTRAINTS: Must obey OpenClaw shell ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Interaction Surface System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make interaction surface system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: surface state notifier
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+PARENT SYSTEM: Interaction Surface System
+
+PURPOSE: Reports holds, approvals, and recovery state to the operator.
+FUNCTION: Reports holds, approvals, and recovery state to the operator.
+MECHANISM: Emits legible status transitions from internal governance and repair events.
+INPUTS: Session Runtime System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Interaction Surface System
+DEPENDENCIES: Session Runtime System, Action Legality System, Trust Threshold System
+CONSTRAINTS: Must obey OpenClaw shell ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Interaction Surface System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make interaction surface system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: browser action adapter
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Browser Execution System
+
+PURPOSE: Maps OdinClaw action packets to browser actions.
+FUNCTION: Maps OdinClaw action packets to browser actions.
+MECHANISM: Translates approved browser intents into executable browser commands.
+INPUTS: Interaction Surface System, Action Legality System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Browser Execution System
+DEPENDENCIES: Interaction Surface System, Action Legality System, Risk Classification System
+CONSTRAINTS: Must obey OpenClaw shell gated by ODIN ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Browser Execution System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make browser execution system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: navigation executor
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Browser Execution System
+
+PURPOSE: Performs page navigation without implicit trust.
+FUNCTION: Performs page navigation without implicit trust.
+MECHANISM: Executes approved navigation commands and returns state for classification.
+INPUTS: Interaction Surface System, Action Legality System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Browser Execution System
+DEPENDENCIES: Interaction Surface System, Action Legality System, Risk Classification System
+CONSTRAINTS: Must obey OpenClaw shell gated by ODIN ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Browser Execution System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make browser execution system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: DOM capture bridge
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Browser Execution System
+
+PURPOSE: Captures page state for safe inspection and provenance.
+FUNCTION: Captures page state for safe inspection and provenance.
+MECHANISM: Returns structured page snapshots for reader and context systems.
+INPUTS: Interaction Surface System, Action Legality System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Browser Execution System
+DEPENDENCIES: Interaction Surface System, Action Legality System, Risk Classification System
+CONSTRAINTS: Must obey OpenClaw shell gated by ODIN ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Browser Execution System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make browser execution system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: mutation action guard
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Browser Execution System
+
+PURPOSE: Blocks or gates risky browser mutations.
+FUNCTION: Blocks or gates risky browser mutations.
+MECHANISM: Requires governance approval before submits, uploads, or destructive UI actions.
+INPUTS: Interaction Surface System, Action Legality System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Browser Execution System
+DEPENDENCIES: Interaction Surface System, Action Legality System, Risk Classification System
+CONSTRAINTS: Must obey OpenClaw shell gated by ODIN ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Browser Execution System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make browser execution system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: tool invocation bridge
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Tool Execution System
+
+PURPOSE: Invokes approved tools through a common bridge.
+FUNCTION: Invokes approved tools through a common bridge.
+MECHANISM: Wraps tool calls in a governed execution contract.
+INPUTS: Interaction Surface System, Action Legality System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Tool Execution System
+DEPENDENCIES: Interaction Surface System, Action Legality System, Risk Classification System
+CONSTRAINTS: Must obey OpenClaw shell gated by ODIN ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Tool Execution System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make tool execution system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: tool result normalizer
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Tool Execution System
+
+PURPOSE: Normalizes tool outputs for context and memory.
+FUNCTION: Normalizes tool outputs for context and memory.
+MECHANISM: Transforms heterogeneous tool outputs into stable internal records.
+INPUTS: Interaction Surface System, Action Legality System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Tool Execution System
+DEPENDENCIES: Interaction Surface System, Action Legality System, Risk Classification System
+CONSTRAINTS: Must obey OpenClaw shell gated by ODIN ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Tool Execution System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make tool execution system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: execution envelope
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Tool Execution System
+
+PURPOSE: Provides timeout, policy, and receipt hooks around tool use.
+FUNCTION: Provides timeout, policy, and receipt hooks around tool use.
+MECHANISM: Applies shared execution guardrails before and after tool calls.
+INPUTS: Interaction Surface System, Action Legality System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Tool Execution System
+DEPENDENCIES: Interaction Surface System, Action Legality System, Risk Classification System
+CONSTRAINTS: Must obey OpenClaw shell gated by ODIN ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Tool Execution System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make tool execution system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: tool timeout handler
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Tool Execution System
+
+PURPOSE: Detects and responds to stalled tool calls.
+FUNCTION: Detects and responds to stalled tool calls.
+MECHANISM: Triggers hold, retry, or repair paths when tool execution exceeds policy.
+INPUTS: Interaction Surface System, Action Legality System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Tool Execution System
+DEPENDENCIES: Interaction Surface System, Action Legality System, Risk Classification System
+CONSTRAINTS: Must obey OpenClaw shell gated by ODIN ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Tool Execution System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make tool execution system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: plugin registry
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Plugin Host System
+
+PURPOSE: Tracks installed and available plugins.
+FUNCTION: Tracks installed and available plugins.
+MECHANISM: Maintains the visible plugin inventory for routing and policy.
+INPUTS: Interaction Surface System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Plugin Host System
+DEPENDENCIES: Interaction Surface System, Trust Threshold System, Action Legality System
+CONSTRAINTS: Must obey OpenClaw shell ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Plugin Host System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make plugin host system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: plugin capability manifest
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Plugin Host System
+
+PURPOSE: Describes plugin capabilities in a stable form.
+FUNCTION: Describes plugin capabilities in a stable form.
+MECHANISM: Publishes plugin action surfaces for risk and trust classification.
+INPUTS: Interaction Surface System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Plugin Host System
+DEPENDENCIES: Interaction Surface System, Trust Threshold System, Action Legality System
+CONSTRAINTS: Must obey OpenClaw shell ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Plugin Host System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make plugin host system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: plugin isolation adapter
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Plugin Host System
+
+PURPOSE: Connects plugin execution to isolation boundaries.
+FUNCTION: Connects plugin execution to isolation boundaries.
+MECHANISM: Routes plugin execution through sandbox and policy hooks.
+INPUTS: Interaction Surface System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Plugin Host System
+DEPENDENCIES: Interaction Surface System, Trust Threshold System, Action Legality System
+CONSTRAINTS: Must obey OpenClaw shell ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Plugin Host System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make plugin host system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: plugin lifecycle manager
+PARENT LAYER: EXECUTION SURFACE LAYER
+PARENT SYSTEM: Plugin Host System
+
+PURPOSE: Handles plugin load, update, and disable flows.
+FUNCTION: Handles plugin load, update, and disable flows.
+MECHANISM: Emits lifecycle events into receipts and trust review.
+INPUTS: Interaction Surface System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Plugin Host System
+DEPENDENCIES: Interaction Surface System, Trust Threshold System, Action Legality System
+CONSTRAINTS: Must obey OpenClaw shell ownership, P0 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Plugin Host System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make plugin host system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: preflight evaluator
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Action Legality System
+
+PURPOSE: Runs legality checks before action release.
+FUNCTION: Runs legality checks before action release.
+MECHANISM: Evaluates action packets against policy, trust, and risk state.
+INPUTS: Interaction Surface System, Risk Classification System, Trust Threshold System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Action Legality System
+DEPENDENCIES: Interaction Surface System, Risk Classification System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Action Legality System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make action legality system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: action class mapper
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Action Legality System
+
+PURPOSE: Maps requested actions into stable risk classes.
+FUNCTION: Maps requested actions into stable risk classes.
+MECHANISM: Assigns action classes used by governance and approval logic.
+INPUTS: Interaction Surface System, Risk Classification System, Trust Threshold System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Action Legality System
+DEPENDENCIES: Interaction Surface System, Risk Classification System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Action Legality System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make action legality system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: policy check engine
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Action Legality System
+
+PURPOSE: Decides whether action may proceed.
+FUNCTION: Decides whether action may proceed.
+MECHANISM: Applies inherited doctrine, policy packs, and action rules.
+INPUTS: Interaction Surface System, Risk Classification System, Trust Threshold System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Action Legality System
+DEPENDENCIES: Interaction Surface System, Risk Classification System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Action Legality System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make action legality system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: deny / hold dispatcher
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Action Legality System
+
+PURPOSE: Routes blocked actions into hold, deny, or escalation outcomes.
+FUNCTION: Routes blocked actions into hold, deny, or escalation outcomes.
+MECHANISM: Emits governed decision results and next-step instructions.
+INPUTS: Interaction Surface System, Risk Classification System, Trust Threshold System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Action Legality System
+DEPENDENCIES: Interaction Surface System, Risk Classification System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Action Legality System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make action legality system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: approval request builder
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Approval System
+
+PURPOSE: Builds operator-readable approval requests.
+FUNCTION: Builds operator-readable approval requests.
+MECHANISM: Packages risk, provenance, and intended effect into approval packets.
+INPUTS: Action Legality System, Risk Classification System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Approval System
+DEPENDENCIES: Action Legality System, Risk Classification System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Approval System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make approval system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: approval state tracker
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Approval System
+
+PURPOSE: Tracks pending and resolved approvals.
+FUNCTION: Tracks pending and resolved approvals.
+MECHANISM: Maintains approval lifecycle state across session and continuity boundaries.
+INPUTS: Action Legality System, Risk Classification System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Approval System
+DEPENDENCIES: Action Legality System, Risk Classification System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Approval System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make approval system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: operator approval bridge
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Approval System
+
+PURPOSE: Carries approval decisions into OdinClaw runtime.
+FUNCTION: Carries approval decisions into OdinClaw runtime.
+MECHANISM: Links operator decisions back into governed execution flow.
+INPUTS: Action Legality System, Risk Classification System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Approval System
+DEPENDENCIES: Action Legality System, Risk Classification System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Approval System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make approval system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: decision receipt emitter
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Approval System
+
+PURPOSE: Records approval outcomes as receipts.
+FUNCTION: Records approval outcomes as receipts.
+MECHANISM: Writes approval requests, approvals, denials, and expirations to the chain.
+INPUTS: Action Legality System, Risk Classification System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Approval System
+DEPENDENCIES: Action Legality System, Risk Classification System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Approval System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make approval system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: risk envelope classifier
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Risk Classification System
+
+PURPOSE: Classifies actions into stable risk envelopes.
+FUNCTION: Classifies actions into stable risk envelopes.
+MECHANISM: Maps actions into READ_ONLY, MUTATING, CREDENTIALED, and destructive classes.
+INPUTS: Interaction Surface System, Browser Execution System, Tool Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Risk Classification System
+DEPENDENCIES: Interaction Surface System, Browser Execution System, Tool Execution System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Risk Classification System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make risk classification system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: credentialed action detector
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Risk Classification System
+
+PURPOSE: Detects use of stored identity or remote authority.
+FUNCTION: Detects use of stored identity or remote authority.
+MECHANISM: Flags actions requiring stronger governance because credentials or authority are involved.
+INPUTS: Interaction Surface System, Browser Execution System, Tool Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Risk Classification System
+DEPENDENCIES: Interaction Surface System, Browser Execution System, Tool Execution System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Risk Classification System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make risk classification system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: destructive action detector
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Risk Classification System
+
+PURPOSE: Detects irreversible or high-impact operations.
+FUNCTION: Detects irreversible or high-impact operations.
+MECHANISM: Escalates actions that can delete, submit, or persist harmful change.
+INPUTS: Interaction Surface System, Browser Execution System, Tool Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Risk Classification System
+DEPENDENCIES: Interaction Surface System, Browser Execution System, Tool Execution System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Risk Classification System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make risk classification system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: risk escalation scorer
+PARENT LAYER: GOVERNANCE / RISK LAYER
+PARENT SYSTEM: Risk Classification System
+
+PURPOSE: Ranks actions for hold, approval, or deny behavior.
+FUNCTION: Ranks actions for hold, approval, or deny behavior.
+MECHANISM: Scores combined effect of action class, trust level, and continuity impact.
+INPUTS: Interaction Surface System, Browser Execution System, Tool Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Risk Classification System
+DEPENDENCIES: Interaction Surface System, Browser Execution System, Tool Execution System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P4 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Risk Classification System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make risk classification system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: source classifier
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Input Classification System
+
+PURPOSE: Identifies the type and origin of incoming content or capability.
+FUNCTION: Identifies the type and origin of incoming content or capability.
+MECHANISM: Tags sources as operator, tool, provider, plugin, page, file, or memory.
+INPUTS: Interaction Surface System, Plugin Host System, Read-Only Reader System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Input Classification System
+DEPENDENCIES: Interaction Surface System, Plugin Host System, Read-Only Reader System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Input Classification System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make input classification system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: self / non-self classifier
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Input Classification System
+
+PURPOSE: Separates trusted self-domain structures from outside or ambiguous structures.
+FUNCTION: Separates trusted self-domain structures from outside or ambiguous structures.
+MECHANISM: Applies initial immune-style classification to inputs and capabilities.
+INPUTS: Interaction Surface System, Plugin Host System, Read-Only Reader System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Input Classification System
+DEPENDENCIES: Interaction Surface System, Plugin Host System, Read-Only Reader System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Input Classification System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make input classification system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: content trust annotator
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Input Classification System
+
+PURPOSE: Attaches trust metadata to content and capabilities.
+FUNCTION: Attaches trust metadata to content and capabilities.
+MECHANISM: Records trust class, ambiguity, and provenance-weighted warnings.
+INPUTS: Interaction Surface System, Plugin Host System, Read-Only Reader System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Input Classification System
+DEPENDENCIES: Interaction Surface System, Plugin Host System, Read-Only Reader System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Input Classification System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make input classification system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: ambiguity holder
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Input Classification System
+
+PURPOSE: Allows uncertain sources to remain unresolved temporarily.
+FUNCTION: Allows uncertain sources to remain unresolved temporarily.
+MECHANISM: Prevents forced trust or forced rejection when evidence is incomplete.
+INPUTS: Interaction Surface System, Plugin Host System, Read-Only Reader System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Input Classification System
+DEPENDENCIES: Interaction Surface System, Plugin Host System, Read-Only Reader System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Input Classification System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make input classification system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: trust score register
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Trust Threshold System
+
+PURPOSE: Stores current trust state for sources and capabilities.
+FUNCTION: Stores current trust state for sources and capabilities.
+MECHANISM: Maintains trust classes and scores for tools, pages, providers, and memory entries.
+INPUTS: Input Classification System, Risk Classification System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Trust Threshold System
+DEPENDENCIES: Input Classification System, Risk Classification System, Conflict Memory System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Trust Threshold System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make trust threshold system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: threshold evaluator
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Trust Threshold System
+
+PURPOSE: Determines whether trust state permits intake or action.
+FUNCTION: Determines whether trust state permits intake or action.
+MECHANISM: Applies trust thresholds before routing, context inclusion, or execution.
+INPUTS: Input Classification System, Risk Classification System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Trust Threshold System
+DEPENDENCIES: Input Classification System, Risk Classification System, Conflict Memory System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Trust Threshold System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make trust threshold system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: trust downgrade handler
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Trust Threshold System
+
+PURPOSE: Tightens trust after contradiction, contamination, or failure.
+FUNCTION: Tightens trust after contradiction, contamination, or failure.
+MECHANISM: Records and applies trust penalties linked to receipts and conflicts.
+INPUTS: Input Classification System, Risk Classification System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Trust Threshold System
+DEPENDENCIES: Input Classification System, Risk Classification System, Conflict Memory System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Trust Threshold System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make trust threshold system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: trust upgrade handler
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Trust Threshold System
+
+PURPOSE: Raises trust only through governed evidence.
+FUNCTION: Raises trust only through governed evidence.
+MECHANISM: Promotes sources and capabilities after repeated validated success.
+INPUTS: Input Classification System, Risk Classification System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Trust Threshold System
+DEPENDENCIES: Input Classification System, Risk Classification System, Conflict Memory System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Trust Threshold System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make trust threshold system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: safe fetch adapter
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Read-Only Reader System
+
+PURPOSE: Fetches low-trust content without mutating external state.
+FUNCTION: Fetches low-trust content without mutating external state.
+MECHANISM: Uses restricted readers to obtain raw content safely.
+INPUTS: Interaction Surface System, Browser Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Read-Only Reader System
+DEPENDENCIES: Interaction Surface System, Browser Execution System, Trust Threshold System, Action Legality System
+CONSTRAINTS: Must obey ODIN-backed adapter over OpenClaw surfaces ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Read-Only Reader System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make read-only reader system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: content sanitizer
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Read-Only Reader System
+
+PURPOSE: Transforms content into a safer text or structured representation.
+FUNCTION: Transforms content into a safer text or structured representation.
+MECHANISM: Removes active execution surfaces and unsafe embedded directives where possible.
+INPUTS: Interaction Surface System, Browser Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Read-Only Reader System
+DEPENDENCIES: Interaction Surface System, Browser Execution System, Trust Threshold System, Action Legality System
+CONSTRAINTS: Must obey ODIN-backed adapter over OpenClaw surfaces ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Read-Only Reader System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make read-only reader system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: distilled output builder
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Read-Only Reader System
+
+PURPOSE: Builds minimal summaries for higher layers.
+FUNCTION: Builds minimal summaries for higher layers.
+MECHANISM: Produces reduced read-only artifacts suitable for context and trust systems.
+INPUTS: Interaction Surface System, Browser Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Read-Only Reader System
+DEPENDENCIES: Interaction Surface System, Browser Execution System, Trust Threshold System, Action Legality System
+CONSTRAINTS: Must obey ODIN-backed adapter over OpenClaw surfaces ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Read-Only Reader System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make read-only reader system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: reader provenance emitter
+PARENT LAYER: TRUST / BOUNDARY LAYER
+PARENT SYSTEM: Read-Only Reader System
+
+PURPOSE: Records provenance and trust metadata for reader outputs.
+FUNCTION: Records provenance and trust metadata for reader outputs.
+MECHANISM: Links sanitized content back to source, time, and reader path.
+INPUTS: Interaction Surface System, Browser Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Read-Only Reader System
+DEPENDENCIES: Interaction Surface System, Browser Execution System, Trust Threshold System, Action Legality System
+CONSTRAINTS: Must obey ODIN-backed adapter over OpenClaw surfaces ownership, P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Read-Only Reader System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make read-only reader system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: continuity link writer
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+PARENT SYSTEM: Continuity Evidence System
+
+PURPOSE: Writes continuity links between actions, memories, and sessions.
+FUNCTION: Writes continuity links between actions, memories, and sessions.
+MECHANISM: Emits lineage relations for actions and durable state changes.
+INPUTS: Session Runtime System, Receipt Chain System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Continuity Evidence System
+DEPENDENCIES: Session Runtime System, Receipt Chain System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Continuity Evidence System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make continuity evidence system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: run continuity correlator
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+PARENT SYSTEM: Continuity Evidence System
+
+PURPOSE: Correlates run-local actions into a single trace.
+FUNCTION: Correlates run-local actions into a single trace.
+MECHANISM: Aggregates run events into one coherent continuity path.
+INPUTS: Session Runtime System, Receipt Chain System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Continuity Evidence System
+DEPENDENCIES: Session Runtime System, Receipt Chain System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Continuity Evidence System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make continuity evidence system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: cross-session continuity linker
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+PARENT SYSTEM: Continuity Evidence System
+
+PURPOSE: Links new sessions back to prior durable continuity.
+FUNCTION: Links new sessions back to prior durable continuity.
+MECHANISM: Preserves continuity across shell session boundaries.
+INPUTS: Session Runtime System, Receipt Chain System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Continuity Evidence System
+DEPENDENCIES: Session Runtime System, Receipt Chain System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Continuity Evidence System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make continuity evidence system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: continuity violation detector
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+PARENT SYSTEM: Continuity Evidence System
+
+PURPOSE: Detects broken or contradictory lineage.
+FUNCTION: Detects broken or contradictory lineage.
+MECHANISM: Flags lineage gaps, identity breaks, and receipt discontinuities.
+INPUTS: Session Runtime System, Receipt Chain System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Continuity Evidence System
+DEPENDENCIES: Session Runtime System, Receipt Chain System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Continuity Evidence System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make continuity evidence system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: inherited doctrine store
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+PARENT SYSTEM: Identity / Doctrine Inheritance System
+
+PURPOSE: Stores mandatory ODIN base views for OdinClaw.
+FUNCTION: Stores mandatory ODIN base views for OdinClaw.
+MECHANISM: Holds durable runtime doctrine derived from ODIN parent architecture.
+INPUTS: Continuity Evidence System, Codex Knowledge System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Identity / Doctrine Inheritance System
+DEPENDENCIES: Continuity Evidence System, Codex Knowledge System, Durable Memory Authority System
+CONSTRAINTS: Must obey ODIN ownership, P2 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Identity / Doctrine Inheritance System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make identity / doctrine inheritance system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: identity continuity injector
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+PARENT SYSTEM: Identity / Doctrine Inheritance System
+
+PURPOSE: Injects identity-bearing continuity material into runtime behavior.
+FUNCTION: Injects identity-bearing continuity material into runtime behavior.
+MECHANISM: Provides stable self-definition to context and governance layers.
+INPUTS: Continuity Evidence System, Codex Knowledge System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Identity / Doctrine Inheritance System
+DEPENDENCIES: Continuity Evidence System, Codex Knowledge System, Durable Memory Authority System
+CONSTRAINTS: Must obey ODIN ownership, P2 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Identity / Doctrine Inheritance System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make identity / doctrine inheritance system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: value continuity injector
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+PARENT SYSTEM: Identity / Doctrine Inheritance System
+
+PURPOSE: Injects value and non-negotiable continuity into decisions.
+FUNCTION: Injects value and non-negotiable continuity into decisions.
+MECHANISM: Feeds stable priorities into legality, trust, and context selection.
+INPUTS: Continuity Evidence System, Codex Knowledge System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Identity / Doctrine Inheritance System
+DEPENDENCIES: Continuity Evidence System, Codex Knowledge System, Durable Memory Authority System
+CONSTRAINTS: Must obey ODIN ownership, P2 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Identity / Doctrine Inheritance System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make identity / doctrine inheritance system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: doctrine version tracker
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+PARENT SYSTEM: Identity / Doctrine Inheritance System
+
+PURPOSE: Tracks doctrine revisions and inheritance changes.
+FUNCTION: Tracks doctrine revisions and inheritance changes.
+MECHANISM: Links doctrine updates to receipts and durable memory lineage.
+INPUTS: Continuity Evidence System, Codex Knowledge System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Identity / Doctrine Inheritance System
+DEPENDENCIES: Continuity Evidence System, Codex Knowledge System, Durable Memory Authority System
+CONSTRAINTS: Must obey ODIN ownership, P2 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Identity / Doctrine Inheritance System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make identity / doctrine inheritance system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: durable memory writer
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Durable Memory Authority System
+
+PURPOSE: Writes durable OdinClaw memory records.
+FUNCTION: Writes durable OdinClaw memory records.
+MECHANISM: Persists identity-bearing memory, lessons, doctrine-linked memory, and trust-relevant records.
+INPUTS: Continuity Evidence System, Identity / Doctrine Inheritance System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Durable Memory Authority System
+DEPENDENCIES: Continuity Evidence System, Identity / Doctrine Inheritance System, Action Legality System
+CONSTRAINTS: Must obey ODIN ownership, P3 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Durable Memory Authority System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make durable memory authority system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: memory arbitration engine
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Durable Memory Authority System
+
+PURPOSE: Decides how session-local and durable memory interact.
+FUNCTION: Decides how session-local and durable memory interact.
+MECHANISM: Resolves read/write priority and prevents split-brain memory.
+INPUTS: Continuity Evidence System, Identity / Doctrine Inheritance System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Durable Memory Authority System
+DEPENDENCIES: Continuity Evidence System, Identity / Doctrine Inheritance System, Action Legality System
+CONSTRAINTS: Must obey ODIN ownership, P3 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Durable Memory Authority System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make durable memory authority system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: canon / provisional splitter
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Durable Memory Authority System
+
+PURPOSE: Separates durable trusted memory from provisional memory.
+FUNCTION: Separates durable trusted memory from provisional memory.
+MECHANISM: Stores stable canon and unresolved material in distinct lanes.
+INPUTS: Continuity Evidence System, Identity / Doctrine Inheritance System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Durable Memory Authority System
+DEPENDENCIES: Continuity Evidence System, Identity / Doctrine Inheritance System, Action Legality System
+CONSTRAINTS: Must obey ODIN ownership, P3 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Durable Memory Authority System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make durable memory authority system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: memory recall gate
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Durable Memory Authority System
+
+PURPOSE: Controls which durable memory may enter runtime context.
+FUNCTION: Controls which durable memory may enter runtime context.
+MECHANISM: Uses trust, continuity, and relevance to gate memory recall.
+INPUTS: Continuity Evidence System, Identity / Doctrine Inheritance System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Durable Memory Authority System
+DEPENDENCIES: Continuity Evidence System, Identity / Doctrine Inheritance System, Action Legality System
+CONSTRAINTS: Must obey ODIN ownership, P3 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Durable Memory Authority System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make durable memory authority system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: contradiction record writer
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Conflict Memory System
+
+PURPOSE: Writes durable contradiction records.
+FUNCTION: Writes durable contradiction records.
+MECHANISM: Persists unresolved conflicts tied to provenance, receipts, and trust state.
+INPUTS: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Conflict Memory System
+DEPENDENCIES: Durable Memory Authority System, Receipt Chain System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P3-P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Conflict Memory System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make conflict memory system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: conflict resurfacer
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Conflict Memory System
+
+PURPOSE: Brings relevant prior contradictions back into active context.
+FUNCTION: Brings relevant prior contradictions back into active context.
+MECHANISM: Reinjects unresolved tensions into context assembly and trust review.
+INPUTS: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Conflict Memory System
+DEPENDENCIES: Durable Memory Authority System, Receipt Chain System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P3-P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Conflict Memory System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make conflict memory system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: unresolved tension tracker
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Conflict Memory System
+
+PURPOSE: Tracks open conflicts that still affect behavior.
+FUNCTION: Tracks open conflicts that still affect behavior.
+MECHANISM: Maintains active contradiction pressure until resolved or downgraded.
+INPUTS: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Conflict Memory System
+DEPENDENCIES: Durable Memory Authority System, Receipt Chain System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P3-P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Conflict Memory System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make conflict memory system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: confidence warning emitter
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Conflict Memory System
+
+PURPOSE: Emits warnings when prior contradiction weakens confidence.
+FUNCTION: Emits warnings when prior contradiction weakens confidence.
+MECHANISM: Signals lowered certainty to routing, trust, and operator surface layers.
+INPUTS: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Conflict Memory System
+DEPENDENCIES: Durable Memory Authority System, Receipt Chain System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P3-P5 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Conflict Memory System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make conflict memory system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: codex pack loader
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Codex Knowledge System
+
+PURPOSE: Loads governed knowledge packs into OdinClaw.
+FUNCTION: Loads governed knowledge packs into OdinClaw.
+MECHANISM: Imports stable doctrine, policy, and reference packs under controlled rules.
+INPUTS: Identity / Doctrine Inheritance System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Codex Knowledge System
+DEPENDENCIES: Identity / Doctrine Inheritance System, Trust Threshold System
+CONSTRAINTS: Must obey ODIN ownership, P3 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Codex Knowledge System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make codex knowledge system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: provenance-rated retriever
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Codex Knowledge System
+
+PURPOSE: Retrieves Codex entries using provenance and trust metadata.
+FUNCTION: Retrieves Codex entries using provenance and trust metadata.
+MECHANISM: Ranks packs and entries by trust, relevance, and continuity impact.
+INPUTS: Identity / Doctrine Inheritance System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Codex Knowledge System
+DEPENDENCIES: Identity / Doctrine Inheritance System, Trust Threshold System
+CONSTRAINTS: Must obey ODIN ownership, P3 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Codex Knowledge System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make codex knowledge system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: doctrine pack selector
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Codex Knowledge System
+
+PURPOSE: Selects doctrine-bearing Codex slices for runtime use.
+FUNCTION: Selects doctrine-bearing Codex slices for runtime use.
+MECHANISM: Chooses inherited doctrine and policy packs relevant to the current action or session.
+INPUTS: Identity / Doctrine Inheritance System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Codex Knowledge System
+DEPENDENCIES: Identity / Doctrine Inheritance System, Trust Threshold System
+CONSTRAINTS: Must obey ODIN ownership, P3 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Codex Knowledge System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make codex knowledge system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: workflow packet registry
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+PARENT SYSTEM: Codex Knowledge System
+
+PURPOSE: Stores validated recurring workflow packets.
+FUNCTION: Stores validated recurring workflow packets.
+MECHANISM: Registers reusable procedures only after validation and receipt-backed success.
+INPUTS: Identity / Doctrine Inheritance System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Codex Knowledge System
+DEPENDENCIES: Identity / Doctrine Inheritance System, Trust Threshold System
+CONSTRAINTS: Must obey ODIN ownership, P3 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Codex Knowledge System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make codex knowledge system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: context budgeter
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+PARENT SYSTEM: Context Assembly System
+
+PURPOSE: Allocates limited context space across competing sources.
+FUNCTION: Allocates limited context space across competing sources.
+MECHANISM: Budgets context window for doctrine, memory, trust warnings, and current task state.
+INPUTS: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Context Assembly System
+DEPENDENCIES: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System, Trust Threshold System, Stability Regulation System
+CONSTRAINTS: Must obey ODIN-backed context engine ownership, P2 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Context Assembly System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make context assembly system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: continuity context selector
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+PARENT SYSTEM: Context Assembly System
+
+PURPOSE: Selects lineage-relevant context for the current run.
+FUNCTION: Selects lineage-relevant context for the current run.
+MECHANISM: Chooses prior memories, receipts, and doctrine linked to current continuity and task.
+INPUTS: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Context Assembly System
+DEPENDENCIES: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System, Trust Threshold System, Stability Regulation System
+CONSTRAINTS: Must obey ODIN-backed context engine ownership, P2 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Context Assembly System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make context assembly system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: trust-aware inclusion filter
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+PARENT SYSTEM: Context Assembly System
+
+PURPOSE: Excludes or marks untrusted material in context.
+FUNCTION: Excludes or marks untrusted material in context.
+MECHANISM: Uses trust thresholds and provenance to decide what enters runtime context.
+INPUTS: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Context Assembly System
+DEPENDENCIES: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System, Trust Threshold System, Stability Regulation System
+CONSTRAINTS: Must obey ODIN-backed context engine ownership, P2 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Context Assembly System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make context assembly system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: context report emitter
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+PARENT SYSTEM: Context Assembly System
+
+PURPOSE: Reports context composition and top contributors.
+FUNCTION: Reports context composition and top contributors.
+MECHANISM: Emits inspection data so context behavior can be measured and debugged.
+INPUTS: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Context Assembly System
+DEPENDENCIES: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System, Trust Threshold System, Stability Regulation System
+CONSTRAINTS: Must obey ODIN-backed context engine ownership, P2 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Context Assembly System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make context assembly system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: workflow packet selector
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+PARENT SYSTEM: Routing / Workflow Packet System
+
+PURPOSE: Chooses validated recurring workflows for known task patterns.
+FUNCTION: Chooses validated recurring workflows for known task patterns.
+MECHANISM: Selects pre-validated execution packets when task shape and trust state match.
+INPUTS: Context Assembly System, Codex Knowledge System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Routing / Workflow Packet System
+DEPENDENCIES: Context Assembly System, Codex Knowledge System, Conflict Memory System, Trust Threshold System, Stability Regulation System
+CONSTRAINTS: Must obey OpenClaw routing with ODIN overlays ownership, P6 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Routing / Workflow Packet System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make routing / workflow packet system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: route chooser
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+PARENT SYSTEM: Routing / Workflow Packet System
+
+PURPOSE: Chooses execution routes across tools, browser, and read-only paths.
+FUNCTION: Chooses execution routes across tools, browser, and read-only paths.
+MECHANISM: Uses context, action class, trust state, and prior outcomes to choose routes.
+INPUTS: Context Assembly System, Codex Knowledge System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Routing / Workflow Packet System
+DEPENDENCIES: Context Assembly System, Codex Knowledge System, Conflict Memory System, Trust Threshold System, Stability Regulation System
+CONSTRAINTS: Must obey OpenClaw routing with ODIN overlays ownership, P6 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Routing / Workflow Packet System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make routing / workflow packet system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: fallback route chooser
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+PARENT SYSTEM: Routing / Workflow Packet System
+
+PURPOSE: Chooses degraded or alternate routes when the primary route fails.
+FUNCTION: Chooses degraded or alternate routes when the primary route fails.
+MECHANISM: Redirects execution through safer or simpler paths under failure or overload.
+INPUTS: Context Assembly System, Codex Knowledge System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Routing / Workflow Packet System
+DEPENDENCIES: Context Assembly System, Codex Knowledge System, Conflict Memory System, Trust Threshold System, Stability Regulation System
+CONSTRAINTS: Must obey OpenClaw routing with ODIN overlays ownership, P6 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Routing / Workflow Packet System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make routing / workflow packet system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: recurring task matcher
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+PARENT SYSTEM: Routing / Workflow Packet System
+
+PURPOSE: Detects when the current task matches prior recurring patterns.
+FUNCTION: Detects when the current task matches prior recurring patterns.
+MECHANISM: Matches current requests against known repeatable tasks to reduce replanning.
+INPUTS: Context Assembly System, Codex Knowledge System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Routing / Workflow Packet System
+DEPENDENCIES: Context Assembly System, Codex Knowledge System, Conflict Memory System, Trust Threshold System, Stability Regulation System
+CONSTRAINTS: Must obey OpenClaw routing with ODIN overlays ownership, P6 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Routing / Workflow Packet System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make routing / workflow packet system materially real rather than implicit or hand-waved.
+CURRENT STATUS: proto-form
+
+SUBSYSTEM NAME: receipt writer
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Receipt Chain System
+
+PURPOSE: Writes durable receipts for meaningful actions and decisions.
+FUNCTION: Writes durable receipts for meaningful actions and decisions.
+MECHANISM: Appends signed or hash-linked records to the receipt chain.
+INPUTS: Session Runtime System, Browser Execution System, Tool Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Receipt Chain System
+DEPENDENCIES: Session Runtime System, Browser Execution System, Tool Execution System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Receipt Chain System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make receipt chain system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: receipt hash linker
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Receipt Chain System
+
+PURPOSE: Links receipts into a verifiable chain.
+FUNCTION: Links receipts into a verifiable chain.
+MECHANISM: Maintains continuity-safe receipt lineage through hash or equivalent linking.
+INPUTS: Session Runtime System, Browser Execution System, Tool Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Receipt Chain System
+DEPENDENCIES: Session Runtime System, Browser Execution System, Tool Execution System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Receipt Chain System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make receipt chain system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: receipt verifier
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Receipt Chain System
+
+PURPOSE: Verifies chain integrity and detects tampering or breaks.
+FUNCTION: Verifies chain integrity and detects tampering or breaks.
+MECHANISM: Checks receipt continuity and reports missing or altered segments.
+INPUTS: Session Runtime System, Browser Execution System, Tool Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Receipt Chain System
+DEPENDENCIES: Session Runtime System, Browser Execution System, Tool Execution System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Receipt Chain System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make receipt chain system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: receipt query index
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Receipt Chain System
+
+PURPOSE: Indexes receipts for runtime inspection and debugging.
+FUNCTION: Indexes receipts for runtime inspection and debugging.
+MECHANISM: Supports lookup by action, session, trust event, and repair flow.
+INPUTS: Session Runtime System, Browser Execution System, Tool Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Receipt Chain System
+DEPENDENCIES: Session Runtime System, Browser Execution System, Tool Execution System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Receipt Chain System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make receipt chain system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: action provenance collector
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Provenance System
+
+PURPOSE: Collects provenance for browser and tool actions.
+FUNCTION: Collects provenance for browser and tool actions.
+MECHANISM: Captures source, route, actor, and authority metadata for execution events.
+INPUTS: Browser Execution System, Tool Execution System, Read-Only Reader System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Provenance System
+DEPENDENCIES: Browser Execution System, Tool Execution System, Read-Only Reader System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Provenance System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make provenance system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: provider provenance collector
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Provenance System
+
+PURPOSE: Collects provenance for model and provider outputs.
+FUNCTION: Collects provenance for model and provider outputs.
+MECHANISM: Links outputs to provider identity, request context, and approval state.
+INPUTS: Browser Execution System, Tool Execution System, Read-Only Reader System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Provenance System
+DEPENDENCIES: Browser Execution System, Tool Execution System, Read-Only Reader System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Provenance System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make provenance system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: memory provenance collector
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Provenance System
+
+PURPOSE: Attaches provenance to memory writes and recalls.
+FUNCTION: Attaches provenance to memory writes and recalls.
+MECHANISM: Links durable memory events to source, trust state, and receipt lineage.
+INPUTS: Browser Execution System, Tool Execution System, Read-Only Reader System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Provenance System
+DEPENDENCIES: Browser Execution System, Tool Execution System, Read-Only Reader System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Provenance System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make provenance system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: provenance export formatter
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Provenance System
+
+PURPOSE: Formats provenance for debugging, audit, and replay.
+FUNCTION: Formats provenance for debugging, audit, and replay.
+MECHANISM: Exports provenance in a stable form for receipts, trust review, and operator inspection.
+INPUTS: Browser Execution System, Tool Execution System, Read-Only Reader System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Provenance System
+DEPENDENCIES: Browser Execution System, Tool Execution System, Read-Only Reader System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P1 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Provenance System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make provenance system materially real rather than implicit or hand-waved.
+CURRENT STATUS: partial
+
+SUBSYSTEM NAME: rollback evidence linker
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Repair / Rollback System
+
+PURPOSE: Links receipts and provenance into rollback evidence.
+FUNCTION: Links receipts and provenance into rollback evidence.
+MECHANISM: Builds evidence bundles that support governed rollback or compensation.
+INPUTS: Receipt Chain System, Provenance System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Repair / Rollback System
+DEPENDENCIES: Receipt Chain System, Provenance System, Conflict Memory System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P6 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Repair / Rollback System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make repair / rollback system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: recovery planner
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Repair / Rollback System
+
+PURPOSE: Chooses repair, retry, rollback, or degraded continuation.
+FUNCTION: Chooses repair, retry, rollback, or degraded continuation.
+MECHANISM: Plans recovery paths using failure class, trust state, and continuity risk.
+INPUTS: Receipt Chain System, Provenance System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Repair / Rollback System
+DEPENDENCIES: Receipt Chain System, Provenance System, Conflict Memory System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P6 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Repair / Rollback System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make repair / rollback system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: degraded-mode switcher
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Repair / Rollback System
+
+PURPOSE: Moves OdinClaw into constrained operation when needed.
+FUNCTION: Moves OdinClaw into constrained operation when needed.
+MECHANISM: Activates safer limited operation under instability or unresolved failure.
+INPUTS: Receipt Chain System, Provenance System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Repair / Rollback System
+DEPENDENCIES: Receipt Chain System, Provenance System, Conflict Memory System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P6 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Repair / Rollback System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make repair / rollback system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: repair receipt writer
+PARENT LAYER: AUDIT / RECOVERY LAYER
+PARENT SYSTEM: Repair / Rollback System
+
+PURPOSE: Records recovery and rollback actions durably.
+FUNCTION: Records recovery and rollback actions durably.
+MECHANISM: Writes repair receipts so recovery is as traceable as the original failure.
+INPUTS: Receipt Chain System, Provenance System, Conflict Memory System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Repair / Rollback System
+DEPENDENCIES: Receipt Chain System, Provenance System, Conflict Memory System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P6 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Repair / Rollback System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make repair / rollback system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: load monitor
+PARENT LAYER: STATE / SUPPORT LAYER
+PARENT SYSTEM: Burden Signaling System
+
+PURPOSE: Tracks runtime load and resource pressure.
+FUNCTION: Tracks runtime load and resource pressure.
+MECHANISM: Measures queue load, process pressure, and execution concurrency.
+INPUTS: Session Runtime System, Tool Execution System, Browser Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Burden Signaling System
+DEPENDENCIES: Session Runtime System, Tool Execution System, Browser Execution System, Repair / Rollback System
+CONSTRAINTS: Must obey ODIN ownership, P7 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Burden Signaling System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make burden signaling system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: failure pressure counter
+PARENT LAYER: STATE / SUPPORT LAYER
+PARENT SYSTEM: Burden Signaling System
+
+PURPOSE: Tracks repeated failure and contradiction pressure.
+FUNCTION: Tracks repeated failure and contradiction pressure.
+MECHANISM: Counts unresolved failure bursts and repeated blocked or repaired actions.
+INPUTS: Session Runtime System, Tool Execution System, Browser Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Burden Signaling System
+DEPENDENCIES: Session Runtime System, Tool Execution System, Browser Execution System, Repair / Rollback System
+CONSTRAINTS: Must obey ODIN ownership, P7 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Burden Signaling System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make burden signaling system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: queue burden signaler
+PARENT LAYER: STATE / SUPPORT LAYER
+PARENT SYSTEM: Burden Signaling System
+
+PURPOSE: Emits burden signals from stalled or growing queues.
+FUNCTION: Emits burden signals from stalled or growing queues.
+MECHANISM: Raises burden state when action queues exceed safe operating thresholds.
+INPUTS: Session Runtime System, Tool Execution System, Browser Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Burden Signaling System
+DEPENDENCIES: Session Runtime System, Tool Execution System, Browser Execution System, Repair / Rollback System
+CONSTRAINTS: Must obey ODIN ownership, P7 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Burden Signaling System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make burden signaling system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: overload alert emitter
+PARENT LAYER: STATE / SUPPORT LAYER
+PARENT SYSTEM: Burden Signaling System
+
+PURPOSE: Alerts routing and governance when overload becomes meaningful.
+FUNCTION: Alerts routing and governance when overload becomes meaningful.
+MECHANISM: Publishes overload state for holds, pacing, and degraded-mode transitions.
+INPUTS: Session Runtime System, Tool Execution System, Browser Execution System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Burden Signaling System
+DEPENDENCIES: Session Runtime System, Tool Execution System, Browser Execution System, Repair / Rollback System
+CONSTRAINTS: Must obey ODIN ownership, P7 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Burden Signaling System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make burden signaling system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: stability signal aggregator
+PARENT LAYER: STATE / SUPPORT LAYER
+PARENT SYSTEM: Stability Regulation System
+
+PURPOSE: Aggregates burden, repair, and continuity signals into one stability view.
+FUNCTION: Aggregates burden, repair, and continuity signals into one stability view.
+MECHANISM: Combines load, failure, and recovery state into a usable stability signal.
+INPUTS: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Stability Regulation System
+DEPENDENCIES: Burden Signaling System, Repair / Rollback System, Continuity Evidence System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P7 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Stability Regulation System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make stability regulation system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: pace governor
+PARENT LAYER: STATE / SUPPORT LAYER
+PARENT SYSTEM: Stability Regulation System
+
+PURPOSE: Adjusts action rate under burden or instability.
+FUNCTION: Adjusts action rate under burden or instability.
+MECHANISM: Reduces task release tempo when burden or trust risk rises.
+INPUTS: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Stability Regulation System
+DEPENDENCIES: Burden Signaling System, Repair / Rollback System, Continuity Evidence System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P7 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Stability Regulation System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make stability regulation system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: concurrency limiter
+PARENT LAYER: STATE / SUPPORT LAYER
+PARENT SYSTEM: Stability Regulation System
+
+PURPOSE: Limits concurrent execution under unstable conditions.
+FUNCTION: Limits concurrent execution under unstable conditions.
+MECHANISM: Constrains parallel action release when stability falls below threshold.
+INPUTS: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Stability Regulation System
+DEPENDENCIES: Burden Signaling System, Repair / Rollback System, Continuity Evidence System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P7 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Stability Regulation System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make stability regulation system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: safe-hold trigger
+PARENT LAYER: STATE / SUPPORT LAYER
+PARENT SYSTEM: Stability Regulation System
+
+PURPOSE: Moves OdinClaw into temporary governed hold when necessary.
+FUNCTION: Moves OdinClaw into temporary governed hold when necessary.
+MECHANISM: Triggers temporary safe-holds before instability cascades into worse state.
+INPUTS: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Stability Regulation System
+DEPENDENCIES: Burden Signaling System, Repair / Rollback System, Continuity Evidence System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P7 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Stability Regulation System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make stability regulation system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: single-node readiness gate
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+PARENT SYSTEM: Federation Readiness System
+
+PURPOSE: Verifies that single-node OdinClaw is stable enough for federation.
+FUNCTION: Verifies that single-node OdinClaw is stable enough for federation.
+MECHANISM: Checks audit, memory, governance, trust, and repair completion gates.
+INPUTS: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Federation Readiness System
+DEPENDENCIES: Durable Memory Authority System, Action Legality System, Repair / Rollback System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P8 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Federation Readiness System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make federation readiness system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: federated contract validator
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+PARENT SYSTEM: Federation Readiness System
+
+PURPOSE: Validates that federation interfaces are stable and lawful.
+FUNCTION: Validates that federation interfaces are stable and lawful.
+MECHANISM: Checks shared schemas, trust rules, and continuity contracts before sync.
+INPUTS: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Federation Readiness System
+DEPENDENCIES: Durable Memory Authority System, Action Legality System, Repair / Rollback System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P8 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Federation Readiness System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make federation readiness system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: sync safety checker
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+PARENT SYSTEM: Federation Readiness System
+
+PURPOSE: Checks that federation sync will not violate trust or continuity rules.
+FUNCTION: Checks that federation sync will not violate trust or continuity rules.
+MECHANISM: Blocks unsafe sync paths before multi-node exchange begins.
+INPUTS: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Federation Readiness System
+DEPENDENCIES: Durable Memory Authority System, Action Legality System, Repair / Rollback System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P8 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Federation Readiness System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make federation readiness system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: federation unlock receipt
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+PARENT SYSTEM: Federation Readiness System
+
+PURPOSE: Records federation enablement as a high-trust event.
+FUNCTION: Records federation enablement as a high-trust event.
+MECHANISM: Writes durable evidence that federation readiness was satisfied before release.
+INPUTS: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Federation Readiness System
+DEPENDENCIES: Durable Memory Authority System, Action Legality System, Repair / Rollback System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P8 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Federation Readiness System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make federation readiness system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: cross-node receipt replicator
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+PARENT SYSTEM: Federated Continuity System
+
+PURPOSE: Replicates high-trust receipts across approved nodes.
+FUNCTION: Replicates high-trust receipts across approved nodes.
+MECHANISM: Synchronizes selected receipt segments under federated trust rules.
+INPUTS: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Federated Continuity System
+DEPENDENCIES: Federation Readiness System, Receipt Chain System, Continuity Evidence System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P8 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Federated Continuity System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make federated continuity system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: federated memory sync bridge
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+PARENT SYSTEM: Federated Continuity System
+
+PURPOSE: Synchronizes approved durable memory across nodes.
+FUNCTION: Synchronizes approved durable memory across nodes.
+MECHANISM: Shares designated memory slices only after trust and continuity checks pass.
+INPUTS: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Federated Continuity System
+DEPENDENCIES: Federation Readiness System, Receipt Chain System, Continuity Evidence System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P8 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Federated Continuity System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make federated continuity system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: node identity coordinator
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+PARENT SYSTEM: Federated Continuity System
+
+PURPOSE: Coordinates node identity and role boundaries.
+FUNCTION: Coordinates node identity and role boundaries.
+MECHANISM: Preserves node-specific identity while maintaining federated continuity rules.
+INPUTS: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Federated Continuity System
+DEPENDENCIES: Federation Readiness System, Receipt Chain System, Continuity Evidence System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P8 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Federated Continuity System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make federated continuity system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational
+
+SUBSYSTEM NAME: divergence detector
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+PARENT SYSTEM: Federated Continuity System
+
+PURPOSE: Detects when nodes drift beyond allowed continuity bounds.
+FUNCTION: Detects when nodes drift beyond allowed continuity bounds.
+MECHANISM: Flags continuity or trust divergence before it becomes silent corruption.
+INPUTS: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+OUTPUTS: published state, governed events, receipts, or runtime artifacts for Federated Continuity System
+DEPENDENCIES: Federation Readiness System, Receipt Chain System, Continuity Evidence System, Trust Threshold System, Identity / Doctrine Inheritance System
+CONSTRAINTS: Must obey ODIN ownership, P8 build phase gating, and OdinClaw source-of-truth rules.
+FAILURE MODE: Causes degraded behavior in Federated Continuity System, weakens downstream dependents, and may trigger repair or hold behavior.
+WHY IT EXISTS: To make federated continuity system materially real rather than implicit or hand-waved.
+CURRENT STATUS: aspirational

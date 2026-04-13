@@ -1,0 +1,34 @@
+ODINCLAW OVERVIEW
+==================================================
+
+OdinClaw is a derived system.
+
+It is not the full ODIN organism.
+It is not just an OpenClaw-like shell with rebranding.
+
+It is:
+
+OpenClaw-like shell outside
+ODIN governing substrate inside
+
+The shell owns:
+- interaction surface
+- execution surface
+- plugin host
+
+The substrate owns:
+- governance
+- durable memory
+- trust
+- continuity
+- receipts and provenance
+- contradiction handling
+- repair and rollback
+
+The design goal is to close the common weak points of agent shells:
+- shallow memory
+- weak trust handling
+- weak governance
+- poor auditability
+- poor repair
+- repeated inference for stable structure

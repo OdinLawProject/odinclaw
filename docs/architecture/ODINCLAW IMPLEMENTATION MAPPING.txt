@@ -1,0 +1,43 @@
+ODINCLAW IMPLEMENTATION MAPPING
+==================================================
+
+OPENCLAW-LIKE SEAMS TO REUSE
+--------------------------------------------------
+- browser extension patterns
+- memory-core style memory seam
+- plugin-sdk contracts
+- context-engine seam
+
+CURRENT ODIN PATTERNS TO REUSE
+--------------------------------------------------
+- receipt writing
+- continuity evidence and persistence patterns
+- approval and policy engine patterns
+- memory arbitration and memory policy patterns
+- federation patterns only later
+
+TARGET ROOT
+--------------------------------------------------
+`odinclaw/`
+
+SHELL SIDE
+--------------------------------------------------
+`odinclaw/shell/`
+
+ODIN SIDE
+--------------------------------------------------
+`odinclaw/odin/`
+
+SHARED CONTRACTS
+--------------------------------------------------
+`odinclaw/contracts/`
+
+FIRST IMPLEMENTATION PRIORITY
+--------------------------------------------------
+1. contracts
+2. shell runtime
+3. audit
+4. continuity
+5. durable memory
+6. governance
+7. trust

@@ -1,0 +1,58 @@
+ODINCLAW RESOLVED SPEC DECISIONS
+==================================================
+
+INHERITED BASE VIEWS
+--------------------------------------------------
+- intelligence is architectural, not model-only
+- governance before capability release
+- continuity matters
+- durable memory is not session recall
+- trust and boundary handling are explicit
+- repair and rollback are first-class
+- symbiosis means interdependence with boundaries
+- the system is receipt-native and auditable
+
+MEMORY BOUNDARY
+--------------------------------------------------
+Shell memory:
+- session-local operational context
+
+ODIN memory:
+- durable continuity
+- doctrine
+- trust history
+- conflict memory
+- durable lessons
+
+RECEIPTS MUST EXIST FOR
+--------------------------------------------------
+- tool actions
+- browser actions
+- provider calls
+- plugin actions
+- durable memory writes
+- trust-state changes
+- approvals and denials
+- rollback and repair events
+
+INITIAL TRUST CLASSES
+--------------------------------------------------
+- TRUSTED_SELF
+- TRUSTED_OPERATOR
+- APPROVED_TOOL
+- APPROVED_PROVIDER
+- TRUSTED_INTERNAL_KNOWLEDGE
+- AMBIGUOUS_EXTERNAL
+- UNTRUSTED_EXTERNAL
+- KNOWN_BAD_OR_BLOCKED
+
+INITIAL ACTION CLASSES
+--------------------------------------------------
+- READ_ONLY_LOCAL
+- READ_ONLY_EXTERNAL
+- NAVIGATION_ONLY
+- NON_DESTRUCTIVE_TOOL_USE
+- CREDENTIALED_ACTION
+- EXTERNAL_STATE_MUTATION
+- DESTRUCTIVE_ACTION
+- DURABLE_INTERNAL_STATE_MUTATION

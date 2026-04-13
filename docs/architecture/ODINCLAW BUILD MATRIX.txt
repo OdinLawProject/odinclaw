@@ -1,0 +1,52 @@
+ODINCLAW BUILD MATRIX
+==================================================
+
+OPENCLAW-LIKE SHELL OWNS
+--------------------------------------------------
+- session surface
+- browser and tool execution surface
+- plugin host
+- user-facing runtime loop
+
+ODIN SUBSTRATE OWNS
+--------------------------------------------------
+- governance
+- durable memory authority
+- trust thresholds
+- continuity evidence
+- receipts and provenance
+- contradiction memory
+- repair and rollback
+- later federation
+
+SOURCE OF TRUTH RULES
+--------------------------------------------------
+- durable memory: ODIN
+- receipts: ODIN
+- provenance: ODIN
+- trust state: ODIN
+- governance decisions: ODIN
+- session-local fluency state: shell
+
+MVP
+--------------------------------------------------
+- receipts
+- provenance
+- continuity evidence
+- context engine
+- durable memory authority
+- governance preflight
+
+V1
+--------------------------------------------------
+- trust thresholds
+- read-only reader
+- conflict memory
+- rollback and repair
+- Codex-backed doctrine substrate
+
+LATER
+--------------------------------------------------
+- burden signals
+- stability regulation
+- federation

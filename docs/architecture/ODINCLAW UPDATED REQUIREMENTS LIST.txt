@@ -1,0 +1,41 @@
+ODINCLAW UPDATED REQUIREMENTS LIST
+==================================================
+
+NON-NEGOTIABLE
+--------------------------------------------------
+- preserve ODIN base views as durable doctrine
+- keep shell and substrate ownership explicit
+- make ODIN the durable source of truth for memory, trust, receipts, and governance
+- ensure every major integration closes a real weakness
+
+MVP REQUIREMENTS
+--------------------------------------------------
+- receipt bridge
+- provenance bridge
+- continuity linkage
+- ODIN context assembly
+- durable memory authority
+- memory arbitration
+- governance preflight
+- approval-capable action gating
+
+V1 REQUIREMENTS
+--------------------------------------------------
+- self / non-self classification
+- trust thresholds
+- ambiguity holding
+- conflict memory
+- canon/provisional memory split
+- rollback evidence
+- failure repair
+- read-only reader path
+- Codex doctrine packs
+
+LATER REQUIREMENTS
+--------------------------------------------------
+- burden and overload signaling
+- stability regulation
+- action class library expansion
+- workflow packets
+- sandbox profiles
+- federation

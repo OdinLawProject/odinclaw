@@ -1,0 +1,66 @@
+ODINCLAW BUILD ORDER
+==================================================
+
+PHASE 0
+--------------------------------------------------
+Shared scaffold:
+- trace IDs
+- event schema
+- receipt schema
+- shell/substrate ownership rules
+
+PHASE 1
+--------------------------------------------------
+Receipt and provenance bridge:
+- meaningful actions emit receipts
+- provenance is attached to actions and memory writes
+- continuity links span runs and sessions
+
+PHASE 2
+--------------------------------------------------
+ODIN context engine:
+- continuity-aware context
+- doctrine injection
+- memory-aware selection
+
+PHASE 3
+--------------------------------------------------
+Durable memory authority:
+- ODIN owns durable memory
+- OpenClaw-like shell owns only session-local operational memory
+- canon/provisional split
+
+PHASE 4
+--------------------------------------------------
+Governance preflight:
+- action classes
+- policy checks
+- allow / hold / escalate / deny
+- approval for higher-risk actions
+
+PHASE 5
+--------------------------------------------------
+Trust and immune bridge:
+- input classification
+- trust thresholds
+- read-only reader path
+- contradiction-aware trust updates
+
+PHASE 6
+--------------------------------------------------
+Repair and rollback:
+- rollback evidence
+- degraded mode
+- repair receipts
+
+PHASE 7
+--------------------------------------------------
+State and burden signals:
+- overload signaling
+- stability regulation
+- pacing and concurrency control
+
+PHASE 8
+--------------------------------------------------
+Federation later:
+- only after single-node continuity, governance, trust, memory, and repair are stable

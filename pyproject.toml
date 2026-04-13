@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "odinclaw"
+version = "0.1.0"
+description = "OdinClaw: OpenClaw shell with ODIN governing substrate"
+readme = "README.md"
+requires-python = ">=3.12"
+# OdinClaw core has zero external runtime dependencies — stdlib only.
+dependencies = []
+
+[project.scripts]
+odinclaw = "odinclaw.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+test = [
+    "pytest>=8.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["odinclaw*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+

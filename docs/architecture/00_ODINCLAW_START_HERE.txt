@@ -1,0 +1,46 @@
+ODINCLAW BUILD DOCS
+==================================================
+
+PURPOSE
+--------------------------------------------------
+This folder isolates the OdinClaw build plan from the larger ODIN architecture set.
+
+ODINCLAW is not the full ODIN organism.
+It is a derived product that uses selected ODIN-native organs inside an OpenClaw-like interaction shell.
+
+
+WHAT THIS FOLDER CONTAINS
+--------------------------------------------------
+1. ODINCLAW BUILD ORDER.txt
+The recommended phase order for building OdinClaw cleanly.
+
+2. ODINCLAW BUILD MATRIX.txt
+The practical integration matrix showing what OpenClaw should own, what ODIN should own, and when each integration point comes online.
+
+3. ODINCLAW UPDATED REQUIREMENTS LIST.txt
+The consolidated current requirement set.
+
+4. ODINCLAW RESOLVED SPEC DECISIONS.txt
+The final decisions that close the remaining strategic design questions.
+
+
+CORE RULE
+--------------------------------------------------
+Do not build OdinClaw by rewriting OpenClaw into ODIN.
+
+Build OdinClaw by:
+
+- keeping OpenClaw as shell and execution surface
+- installing ODIN as the governing substrate
+- freezing source-of-truth ownership at each boundary
+
+
+READING ORDER
+--------------------------------------------------
+1. ODINCLAW BUILD ORDER.txt
+2. ODINCLAW BUILD MATRIX.txt
+
+
+CONCLUSION
+--------------------------------------------------
+This folder exists to make OdinClaw buildable as its own artifact rather than leaving it implied inside the broader ODIN documentation.

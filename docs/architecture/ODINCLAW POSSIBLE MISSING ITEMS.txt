@@ -1,0 +1,22 @@
+ODINCLAW POSSIBLE MISSING ITEMS
+==================================================
+POSSIBLE_MISSING
+- Explicit confidence calibration system separate from conflict memory
+- Provider-specific trust mediation if multi-provider behavior grows rapidly
+- Separate attachment reader system if file ingestion becomes large enough to merit its own organ
+
+REVIEW_NEEDED
+- Whether Routing / Workflow Packet System should split route choice from packet choice after first implementation
+- Whether Stability Regulation should remain one system or split pace control from safe-hold control
+
+POSSIBLE_MERGE
+- Browser mutation guard and action legality deny/hold dispatcher could share adapters if duplication appears
+
+POSSIBLE_SPLIT
+- Provenance System may need separate provider and browser branches if source volume becomes high
+
+POSSIBLE_RELOCATION
+- Some session compaction behavior may belong closer to durable memory arbitration if session/durable boundaries blur
+
+POSSIBLE_SUPPORT_GAP
+- Fine-grained metrics and benchmarking harnesses for inference-reduction claims still need implementation-level detail

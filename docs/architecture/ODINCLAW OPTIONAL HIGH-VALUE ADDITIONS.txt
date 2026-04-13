@@ -1,0 +1,160 @@
+ODINCLAW OPTIONAL HIGH-VALUE ADDITIONS
+==================================================
+
+PURPOSE
+--------------------------------------------------
+This document captures the highest-value ODIN-derived additions that could make OdinClaw materially better than a strong OpenClaw-like product without destabilizing the product shell.
+
+These are not all "build now" items.
+They are prioritized by likely product value versus architectural risk.
+
+
+ADD NOW OR VERY SOON
+==================================================
+
+1. BURDEN AND STABILITY SIGNALS
+--------------------------------------------------
+Why:
+- OdinClaw still needs a better sense of load, instability, saturation, and internal strain.
+- This is one of the clearest ODIN advantages over normal agent shells.
+
+Expected value:
+- better pacing
+- fewer runaway action loops
+- more graceful degraded behavior
+- better operator trust
+
+
+2. STRONGER DEGRADED-MODE RELIABILITY
+--------------------------------------------------
+Why:
+- A product becomes much more usable when it can enter a clear degraded mode instead of failing opaquely.
+
+Expected value:
+- cleaner failure handling
+- better recovery
+- safer daily use
+
+
+3. WORKFLOW PACKETS
+--------------------------------------------------
+Why:
+- Repeated successful tasks should not require full re-planning every time.
+
+Expected value:
+- lower inference cost
+- higher repeatability
+- fewer execution mistakes on recurring workflows
+
+
+4. PLUGIN / TOOL TRUST REGISTRY
+--------------------------------------------------
+Why:
+- OdinClaw inherits an extension-heavy shell environment.
+- ODIN trust logic becomes much more useful when plugin and tool trust is explicit.
+
+Expected value:
+- safer extension use
+- cleaner trust boundaries
+- better operator control
+
+
+ADD SOON AFTER CORE STABILITY
+==================================================
+
+5. OPERATOR-FACING STATE SURFACES
+--------------------------------------------------
+Why:
+- OdinClaw will be better as a daily product if the operator can see a small amount of meaningful internal state.
+
+Good candidates:
+- current trust posture
+- degraded mode / burden state
+- recent high-significance durable changes
+- current holds / approvals
+
+Expected value:
+- better debugging
+- better operator confidence
+- more legible product state
+
+
+6. BETTER CONTINUITY-WEIGHTED MEMORY PRUNING
+--------------------------------------------------
+Why:
+- As durable memory grows, OdinClaw needs better rules for what remains durable, what demotes, and what stays session-local.
+
+Expected value:
+- lower memory clutter
+- stronger long-term coherence
+- less drift between durable and session memory
+
+
+7. SELECTIVE CODEX INTEGRATION
+--------------------------------------------------
+Why:
+- Codex can help if kept tightly scoped and governed.
+
+Best first uses:
+- doctrine packs
+- action/risk policy packs
+- validated workflow packets
+- trusted operator/environment references
+
+Expected value:
+- reduced repeated inference
+- stronger doctrine consistency
+- better trusted retrieval
+
+
+DEFER UNTIL LATER
+==================================================
+
+8. FEDERATION
+--------------------------------------------------
+Why defer:
+- Single-node continuity, trust, repair, and durable memory still matter more.
+
+
+9. DEEPER HOLOBIONT OR INTERNAL ECOLOGY FEATURES
+--------------------------------------------------
+Why defer:
+- These are more ODIN-complete features than product-critical OdinClaw features right now.
+
+
+10. RICHER DEVELOPMENTAL STAGING
+--------------------------------------------------
+Why defer:
+- Useful later, but not needed before the shell, memory, governance, trust, and repair substrate feel solid.
+
+
+11. BROADER MORPHOGENESIS / PLASTICITY FEATURES
+--------------------------------------------------
+Why defer:
+- Too much structural self-change too early creates instability.
+
+
+SUMMARY PRIORITY ORDER
+==================================================
+
+1. burden and stability signals
+2. degraded-mode reliability
+3. workflow packets
+4. plugin/tool trust registry
+5. operator-facing state surfaces
+6. continuity-weighted memory pruning
+7. selective Codex integration
+8. federation later
+9. deeper organismic extensions much later
+
+
+CONCLUSION
+--------------------------------------------------
+The best next ODIN-derived improvements for OdinClaw are the ones that:
+
+- make the product more reliable
+- make it more governable
+- make it cheaper to operate
+- make it more legible to the operator
+
+The wrong next move would be adding deeper ODIN organs just because they are conceptually interesting.

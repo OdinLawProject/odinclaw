@@ -1,0 +1,1602 @@
+ODINCLAW SUBSYSTEM DEPENDENCY LIST
+==================================================
+
+SUBSYSTEM: session registry
+PARENT SYSTEM: Session Runtime System
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+REQUIRED INPUTS: local runtime state
+PRODUCED OUTPUTS: published state, events, or receipts supporting Session Runtime System
+DIRECT DEPENDENCIES: NONE IDENTIFIED
+REGULATORS: Action Legality System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Interaction Surface System, Receipt Chain System, Continuity Evidence System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: run state tracker
+PARENT SYSTEM: Session Runtime System
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+REQUIRED INPUTS: local runtime state
+PRODUCED OUTPUTS: published state, events, or receipts supporting Session Runtime System
+DIRECT DEPENDENCIES: NONE IDENTIFIED
+REGULATORS: Action Legality System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Interaction Surface System, Receipt Chain System, Continuity Evidence System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: trace id allocator
+PARENT SYSTEM: Session Runtime System
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+REQUIRED INPUTS: local runtime state
+PRODUCED OUTPUTS: published state, events, or receipts supporting Session Runtime System
+DIRECT DEPENDENCIES: NONE IDENTIFIED
+REGULATORS: Action Legality System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Interaction Surface System, Receipt Chain System, Continuity Evidence System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: session compactor
+PARENT SYSTEM: Session Runtime System
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+REQUIRED INPUTS: local runtime state
+PRODUCED OUTPUTS: published state, events, or receipts supporting Session Runtime System
+DIRECT DEPENDENCIES: NONE IDENTIFIED
+REGULATORS: Action Legality System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Interaction Surface System, Receipt Chain System, Continuity Evidence System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: chat ingress adapter
+PARENT SYSTEM: Interaction Surface System
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+REQUIRED INPUTS: Session Runtime System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Interaction Surface System
+DIRECT DEPENDENCIES: Session Runtime System
+REGULATORS: Action Legality System, Trust Threshold System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Input Classification System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Read-Only Reader System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: command parser
+PARENT SYSTEM: Interaction Surface System
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+REQUIRED INPUTS: Session Runtime System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Interaction Surface System
+DIRECT DEPENDENCIES: Session Runtime System
+REGULATORS: Action Legality System, Trust Threshold System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Input Classification System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Read-Only Reader System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: operator response formatter
+PARENT SYSTEM: Interaction Surface System
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+REQUIRED INPUTS: Session Runtime System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Interaction Surface System
+DIRECT DEPENDENCIES: Session Runtime System
+REGULATORS: Action Legality System, Trust Threshold System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Input Classification System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Read-Only Reader System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: surface state notifier
+PARENT SYSTEM: Interaction Surface System
+PARENT LAYER: INTERFACE / SESSION SURFACE LAYER
+REQUIRED INPUTS: Session Runtime System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Interaction Surface System
+DIRECT DEPENDENCIES: Session Runtime System
+REGULATORS: Action Legality System, Trust Threshold System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Input Classification System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Read-Only Reader System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: browser action adapter
+PARENT SYSTEM: Browser Execution System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System, Action Legality System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Browser Execution System
+DIRECT DEPENDENCIES: Interaction Surface System, Action Legality System
+REGULATORS: Action Legality System, Risk Classification System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Read-Only Reader System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Provenance System, Repair / Rollback System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: navigation executor
+PARENT SYSTEM: Browser Execution System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System, Action Legality System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Browser Execution System
+DIRECT DEPENDENCIES: Interaction Surface System, Action Legality System
+REGULATORS: Action Legality System, Risk Classification System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Read-Only Reader System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Provenance System, Repair / Rollback System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: DOM capture bridge
+PARENT SYSTEM: Browser Execution System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System, Action Legality System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Browser Execution System
+DIRECT DEPENDENCIES: Interaction Surface System, Action Legality System
+REGULATORS: Action Legality System, Risk Classification System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Read-Only Reader System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Provenance System, Repair / Rollback System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: mutation action guard
+PARENT SYSTEM: Browser Execution System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System, Action Legality System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Browser Execution System
+DIRECT DEPENDENCIES: Interaction Surface System, Action Legality System
+REGULATORS: Action Legality System, Risk Classification System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Read-Only Reader System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Provenance System, Repair / Rollback System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: tool invocation bridge
+PARENT SYSTEM: Tool Execution System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System, Action Legality System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Tool Execution System
+DIRECT DEPENDENCIES: Interaction Surface System, Action Legality System
+REGULATORS: Action Legality System, Risk Classification System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Provenance System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: tool result normalizer
+PARENT SYSTEM: Tool Execution System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System, Action Legality System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Tool Execution System
+DIRECT DEPENDENCIES: Interaction Surface System, Action Legality System
+REGULATORS: Action Legality System, Risk Classification System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Provenance System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: execution envelope
+PARENT SYSTEM: Tool Execution System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System, Action Legality System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Tool Execution System
+DIRECT DEPENDENCIES: Interaction Surface System, Action Legality System
+REGULATORS: Action Legality System, Risk Classification System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Provenance System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: tool timeout handler
+PARENT SYSTEM: Tool Execution System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System, Action Legality System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Tool Execution System
+DIRECT DEPENDENCIES: Interaction Surface System, Action Legality System
+REGULATORS: Action Legality System, Risk Classification System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Provenance System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: plugin registry
+PARENT SYSTEM: Plugin Host System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Plugin Host System
+DIRECT DEPENDENCIES: Interaction Surface System
+REGULATORS: Trust Threshold System, Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Input Classification System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Tool Execution System, Input Classification System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: plugin capability manifest
+PARENT SYSTEM: Plugin Host System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Plugin Host System
+DIRECT DEPENDENCIES: Interaction Surface System
+REGULATORS: Trust Threshold System, Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Input Classification System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Tool Execution System, Input Classification System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: plugin isolation adapter
+PARENT SYSTEM: Plugin Host System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Plugin Host System
+DIRECT DEPENDENCIES: Interaction Surface System
+REGULATORS: Trust Threshold System, Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Input Classification System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Tool Execution System, Input Classification System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: plugin lifecycle manager
+PARENT SYSTEM: Plugin Host System
+PARENT LAYER: EXECUTION SURFACE LAYER
+REQUIRED INPUTS: Interaction Surface System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Plugin Host System
+DIRECT DEPENDENCIES: Interaction Surface System
+REGULATORS: Trust Threshold System, Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Input Classification System, Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Tool Execution System, Input Classification System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: preflight evaluator
+PARENT SYSTEM: Action Legality System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Interaction Surface System, Risk Classification System, Trust Threshold System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Action Legality System
+DIRECT DEPENDENCIES: Interaction Surface System, Risk Classification System, Trust Threshold System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System, Read-Only Reader System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System, Identity / Doctrine Inheritance System
+KNOWN OR LIKELY FAILURE COUPLINGS: Browser Execution System, Tool Execution System, Approval System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: action class mapper
+PARENT SYSTEM: Action Legality System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Interaction Surface System, Risk Classification System, Trust Threshold System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Action Legality System
+DIRECT DEPENDENCIES: Interaction Surface System, Risk Classification System, Trust Threshold System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System, Read-Only Reader System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System, Identity / Doctrine Inheritance System
+KNOWN OR LIKELY FAILURE COUPLINGS: Browser Execution System, Tool Execution System, Approval System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: policy check engine
+PARENT SYSTEM: Action Legality System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Interaction Surface System, Risk Classification System, Trust Threshold System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Action Legality System
+DIRECT DEPENDENCIES: Interaction Surface System, Risk Classification System, Trust Threshold System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System, Read-Only Reader System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System, Identity / Doctrine Inheritance System
+KNOWN OR LIKELY FAILURE COUPLINGS: Browser Execution System, Tool Execution System, Approval System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: deny / hold dispatcher
+PARENT SYSTEM: Action Legality System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Interaction Surface System, Risk Classification System, Trust Threshold System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Action Legality System
+DIRECT DEPENDENCIES: Interaction Surface System, Risk Classification System, Trust Threshold System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System, Read-Only Reader System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System, Identity / Doctrine Inheritance System
+KNOWN OR LIKELY FAILURE COUPLINGS: Browser Execution System, Tool Execution System, Approval System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: approval request builder
+PARENT SYSTEM: Approval System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Action Legality System, Risk Classification System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Approval System
+DIRECT DEPENDENCIES: Action Legality System, Risk Classification System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Browser Execution System, Tool Execution System, Receipt Chain System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: approval state tracker
+PARENT SYSTEM: Approval System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Action Legality System, Risk Classification System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Approval System
+DIRECT DEPENDENCIES: Action Legality System, Risk Classification System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Browser Execution System, Tool Execution System, Receipt Chain System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: operator approval bridge
+PARENT SYSTEM: Approval System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Action Legality System, Risk Classification System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Approval System
+DIRECT DEPENDENCIES: Action Legality System, Risk Classification System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Browser Execution System, Tool Execution System, Receipt Chain System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: decision receipt emitter
+PARENT SYSTEM: Approval System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Action Legality System, Risk Classification System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Approval System
+DIRECT DEPENDENCIES: Action Legality System, Risk Classification System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Browser Execution System, Tool Execution System, Receipt Chain System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: risk envelope classifier
+PARENT SYSTEM: Risk Classification System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Interaction Surface System, Browser Execution System, Tool Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Risk Classification System
+DIRECT DEPENDENCIES: Interaction Surface System, Browser Execution System, Tool Execution System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Approval System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: credentialed action detector
+PARENT SYSTEM: Risk Classification System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Interaction Surface System, Browser Execution System, Tool Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Risk Classification System
+DIRECT DEPENDENCIES: Interaction Surface System, Browser Execution System, Tool Execution System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Approval System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: destructive action detector
+PARENT SYSTEM: Risk Classification System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Interaction Surface System, Browser Execution System, Tool Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Risk Classification System
+DIRECT DEPENDENCIES: Interaction Surface System, Browser Execution System, Tool Execution System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Approval System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: risk escalation scorer
+PARENT SYSTEM: Risk Classification System
+PARENT LAYER: GOVERNANCE / RISK LAYER
+REQUIRED INPUTS: Interaction Surface System, Browser Execution System, Tool Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Risk Classification System
+DIRECT DEPENDENCIES: Interaction Surface System, Browser Execution System, Tool Execution System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Approval System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: source classifier
+PARENT SYSTEM: Input Classification System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Interaction Surface System, Plugin Host System, Read-Only Reader System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Input Classification System
+DIRECT DEPENDENCIES: Interaction Surface System, Plugin Host System, Read-Only Reader System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Conflict Memory System
+KNOWN OR LIKELY FAILURE COUPLINGS: Trust Threshold System, Context Assembly System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: self / non-self classifier
+PARENT SYSTEM: Input Classification System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Interaction Surface System, Plugin Host System, Read-Only Reader System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Input Classification System
+DIRECT DEPENDENCIES: Interaction Surface System, Plugin Host System, Read-Only Reader System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Conflict Memory System
+KNOWN OR LIKELY FAILURE COUPLINGS: Trust Threshold System, Context Assembly System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: content trust annotator
+PARENT SYSTEM: Input Classification System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Interaction Surface System, Plugin Host System, Read-Only Reader System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Input Classification System
+DIRECT DEPENDENCIES: Interaction Surface System, Plugin Host System, Read-Only Reader System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Conflict Memory System
+KNOWN OR LIKELY FAILURE COUPLINGS: Trust Threshold System, Context Assembly System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: ambiguity holder
+PARENT SYSTEM: Input Classification System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Interaction Surface System, Plugin Host System, Read-Only Reader System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Input Classification System
+DIRECT DEPENDENCIES: Interaction Surface System, Plugin Host System, Read-Only Reader System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Conflict Memory System
+KNOWN OR LIKELY FAILURE COUPLINGS: Trust Threshold System, Context Assembly System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: trust score register
+PARENT SYSTEM: Trust Threshold System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Input Classification System, Risk Classification System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Trust Threshold System
+DIRECT DEPENDENCIES: Input Classification System, Risk Classification System, Conflict Memory System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Conflict Memory System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Context Assembly System, Plugin Host System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: threshold evaluator
+PARENT SYSTEM: Trust Threshold System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Input Classification System, Risk Classification System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Trust Threshold System
+DIRECT DEPENDENCIES: Input Classification System, Risk Classification System, Conflict Memory System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Conflict Memory System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Context Assembly System, Plugin Host System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: trust downgrade handler
+PARENT SYSTEM: Trust Threshold System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Input Classification System, Risk Classification System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Trust Threshold System
+DIRECT DEPENDENCIES: Input Classification System, Risk Classification System, Conflict Memory System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Conflict Memory System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Context Assembly System, Plugin Host System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: trust upgrade handler
+PARENT SYSTEM: Trust Threshold System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Input Classification System, Risk Classification System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Trust Threshold System
+DIRECT DEPENDENCIES: Input Classification System, Risk Classification System, Conflict Memory System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Conflict Memory System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Context Assembly System, Plugin Host System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: safe fetch adapter
+PARENT SYSTEM: Read-Only Reader System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Interaction Surface System, Browser Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Read-Only Reader System
+DIRECT DEPENDENCIES: Interaction Surface System, Browser Execution System
+REGULATORS: Trust Threshold System, Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Input Classification System, Context Assembly System, Provenance System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: content sanitizer
+PARENT SYSTEM: Read-Only Reader System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Interaction Surface System, Browser Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Read-Only Reader System
+DIRECT DEPENDENCIES: Interaction Surface System, Browser Execution System
+REGULATORS: Trust Threshold System, Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Input Classification System, Context Assembly System, Provenance System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: distilled output builder
+PARENT SYSTEM: Read-Only Reader System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Interaction Surface System, Browser Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Read-Only Reader System
+DIRECT DEPENDENCIES: Interaction Surface System, Browser Execution System
+REGULATORS: Trust Threshold System, Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Input Classification System, Context Assembly System, Provenance System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: reader provenance emitter
+PARENT SYSTEM: Read-Only Reader System
+PARENT LAYER: TRUST / BOUNDARY LAYER
+REQUIRED INPUTS: Interaction Surface System, Browser Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Read-Only Reader System
+DIRECT DEPENDENCIES: Interaction Surface System, Browser Execution System
+REGULATORS: Trust Threshold System, Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Input Classification System, Context Assembly System, Provenance System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: continuity link writer
+PARENT SYSTEM: Continuity Evidence System
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+REQUIRED INPUTS: Session Runtime System, Receipt Chain System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Continuity Evidence System
+DIRECT DEPENDENCIES: Session Runtime System, Receipt Chain System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Identity / Doctrine Inheritance System
+KNOWN OR LIKELY FAILURE COUPLINGS: Durable Memory Authority System, Repair / Rollback System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: run continuity correlator
+PARENT SYSTEM: Continuity Evidence System
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+REQUIRED INPUTS: Session Runtime System, Receipt Chain System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Continuity Evidence System
+DIRECT DEPENDENCIES: Session Runtime System, Receipt Chain System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Identity / Doctrine Inheritance System
+KNOWN OR LIKELY FAILURE COUPLINGS: Durable Memory Authority System, Repair / Rollback System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: cross-session continuity linker
+PARENT SYSTEM: Continuity Evidence System
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+REQUIRED INPUTS: Session Runtime System, Receipt Chain System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Continuity Evidence System
+DIRECT DEPENDENCIES: Session Runtime System, Receipt Chain System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Identity / Doctrine Inheritance System
+KNOWN OR LIKELY FAILURE COUPLINGS: Durable Memory Authority System, Repair / Rollback System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: continuity violation detector
+PARENT SYSTEM: Continuity Evidence System
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+REQUIRED INPUTS: Session Runtime System, Receipt Chain System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Continuity Evidence System
+DIRECT DEPENDENCIES: Session Runtime System, Receipt Chain System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Identity / Doctrine Inheritance System
+KNOWN OR LIKELY FAILURE COUPLINGS: Durable Memory Authority System, Repair / Rollback System, Context Assembly System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: inherited doctrine store
+PARENT SYSTEM: Identity / Doctrine Inheritance System
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+REQUIRED INPUTS: Continuity Evidence System, Codex Knowledge System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Identity / Doctrine Inheritance System
+DIRECT DEPENDENCIES: Continuity Evidence System, Codex Knowledge System
+REGULATORS: Durable Memory Authority System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Context Assembly System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: identity continuity injector
+PARENT SYSTEM: Identity / Doctrine Inheritance System
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+REQUIRED INPUTS: Continuity Evidence System, Codex Knowledge System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Identity / Doctrine Inheritance System
+DIRECT DEPENDENCIES: Continuity Evidence System, Codex Knowledge System
+REGULATORS: Durable Memory Authority System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Context Assembly System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: value continuity injector
+PARENT SYSTEM: Identity / Doctrine Inheritance System
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+REQUIRED INPUTS: Continuity Evidence System, Codex Knowledge System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Identity / Doctrine Inheritance System
+DIRECT DEPENDENCIES: Continuity Evidence System, Codex Knowledge System
+REGULATORS: Durable Memory Authority System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Context Assembly System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: doctrine version tracker
+PARENT SYSTEM: Identity / Doctrine Inheritance System
+PARENT LAYER: CONTINUITY / IDENTITY LAYER
+REQUIRED INPUTS: Continuity Evidence System, Codex Knowledge System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Identity / Doctrine Inheritance System
+DIRECT DEPENDENCIES: Continuity Evidence System, Codex Knowledge System
+REGULATORS: Durable Memory Authority System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Context Assembly System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: durable memory writer
+PARENT SYSTEM: Durable Memory Authority System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Continuity Evidence System, Identity / Doctrine Inheritance System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Durable Memory Authority System
+DIRECT DEPENDENCIES: Continuity Evidence System, Identity / Doctrine Inheritance System
+REGULATORS: Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Conflict Memory System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: memory arbitration engine
+PARENT SYSTEM: Durable Memory Authority System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Continuity Evidence System, Identity / Doctrine Inheritance System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Durable Memory Authority System
+DIRECT DEPENDENCIES: Continuity Evidence System, Identity / Doctrine Inheritance System
+REGULATORS: Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Conflict Memory System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: canon / provisional splitter
+PARENT SYSTEM: Durable Memory Authority System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Continuity Evidence System, Identity / Doctrine Inheritance System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Durable Memory Authority System
+DIRECT DEPENDENCIES: Continuity Evidence System, Identity / Doctrine Inheritance System
+REGULATORS: Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Conflict Memory System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: memory recall gate
+PARENT SYSTEM: Durable Memory Authority System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Continuity Evidence System, Identity / Doctrine Inheritance System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Durable Memory Authority System
+DIRECT DEPENDENCIES: Continuity Evidence System, Identity / Doctrine Inheritance System
+REGULATORS: Action Legality System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Conflict Memory System, Trust Threshold System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: contradiction record writer
+PARENT SYSTEM: Conflict Memory System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Conflict Memory System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Trust Threshold System, Repair / Rollback System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: conflict resurfacer
+PARENT SYSTEM: Conflict Memory System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Conflict Memory System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Trust Threshold System, Repair / Rollback System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: unresolved tension tracker
+PARENT SYSTEM: Conflict Memory System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Conflict Memory System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Trust Threshold System, Repair / Rollback System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: confidence warning emitter
+PARENT SYSTEM: Conflict Memory System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Conflict Memory System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Receipt Chain System, Trust Threshold System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Trust Threshold System, Repair / Rollback System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: codex pack loader
+PARENT SYSTEM: Codex Knowledge System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Identity / Doctrine Inheritance System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Codex Knowledge System
+DIRECT DEPENDENCIES: Identity / Doctrine Inheritance System
+REGULATORS: Trust Threshold System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Action Legality System, Durable Memory Authority System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: provenance-rated retriever
+PARENT SYSTEM: Codex Knowledge System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Identity / Doctrine Inheritance System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Codex Knowledge System
+DIRECT DEPENDENCIES: Identity / Doctrine Inheritance System
+REGULATORS: Trust Threshold System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Action Legality System, Durable Memory Authority System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: doctrine pack selector
+PARENT SYSTEM: Codex Knowledge System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Identity / Doctrine Inheritance System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Codex Knowledge System
+DIRECT DEPENDENCIES: Identity / Doctrine Inheritance System
+REGULATORS: Trust Threshold System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Action Legality System, Durable Memory Authority System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: workflow packet registry
+PARENT SYSTEM: Codex Knowledge System
+PARENT LAYER: MEMORY / KNOWLEDGE LAYER
+REQUIRED INPUTS: Identity / Doctrine Inheritance System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Codex Knowledge System
+DIRECT DEPENDENCIES: Identity / Doctrine Inheritance System
+REGULATORS: Trust Threshold System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Context Assembly System, Action Legality System, Durable Memory Authority System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: context budgeter
+PARENT SYSTEM: Context Assembly System
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Context Assembly System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+REGULATORS: Trust Threshold System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Tool Execution System, Browser Execution System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: continuity context selector
+PARENT SYSTEM: Context Assembly System
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Context Assembly System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+REGULATORS: Trust Threshold System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Tool Execution System, Browser Execution System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: trust-aware inclusion filter
+PARENT SYSTEM: Context Assembly System
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Context Assembly System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+REGULATORS: Trust Threshold System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Tool Execution System, Browser Execution System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: context report emitter
+PARENT SYSTEM: Context Assembly System
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Context Assembly System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Identity / Doctrine Inheritance System, Input Classification System
+REGULATORS: Trust Threshold System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Tool Execution System, Browser Execution System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: workflow packet selector
+PARENT SYSTEM: Routing / Workflow Packet System
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+REQUIRED INPUTS: Context Assembly System, Codex Knowledge System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Routing / Workflow Packet System
+DIRECT DEPENDENCIES: Context Assembly System, Codex Knowledge System, Conflict Memory System
+REGULATORS: Trust Threshold System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Tool Execution System, Browser Execution System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: route chooser
+PARENT SYSTEM: Routing / Workflow Packet System
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+REQUIRED INPUTS: Context Assembly System, Codex Knowledge System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Routing / Workflow Packet System
+DIRECT DEPENDENCIES: Context Assembly System, Codex Knowledge System, Conflict Memory System
+REGULATORS: Trust Threshold System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Tool Execution System, Browser Execution System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: fallback route chooser
+PARENT SYSTEM: Routing / Workflow Packet System
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+REQUIRED INPUTS: Context Assembly System, Codex Knowledge System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Routing / Workflow Packet System
+DIRECT DEPENDENCIES: Context Assembly System, Codex Knowledge System, Conflict Memory System
+REGULATORS: Trust Threshold System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Tool Execution System, Browser Execution System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: recurring task matcher
+PARENT SYSTEM: Routing / Workflow Packet System
+PARENT LAYER: CONTEXT / ORCHESTRATION LAYER
+REQUIRED INPUTS: Context Assembly System, Codex Knowledge System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Routing / Workflow Packet System
+DIRECT DEPENDENCIES: Context Assembly System, Codex Knowledge System, Conflict Memory System
+REGULATORS: Trust Threshold System, Stability Regulation System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Tool Execution System, Browser Execution System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: receipt writer
+PARENT SYSTEM: Receipt Chain System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Session Runtime System, Browser Execution System, Tool Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Receipt Chain System
+DIRECT DEPENDENCIES: Session Runtime System, Browser Execution System, Tool Execution System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Continuity Evidence System, Repair / Rollback System, Conflict Memory System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: receipt hash linker
+PARENT SYSTEM: Receipt Chain System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Session Runtime System, Browser Execution System, Tool Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Receipt Chain System
+DIRECT DEPENDENCIES: Session Runtime System, Browser Execution System, Tool Execution System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Continuity Evidence System, Repair / Rollback System, Conflict Memory System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: receipt verifier
+PARENT SYSTEM: Receipt Chain System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Session Runtime System, Browser Execution System, Tool Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Receipt Chain System
+DIRECT DEPENDENCIES: Session Runtime System, Browser Execution System, Tool Execution System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Continuity Evidence System, Repair / Rollback System, Conflict Memory System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: receipt query index
+PARENT SYSTEM: Receipt Chain System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Session Runtime System, Browser Execution System, Tool Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Receipt Chain System
+DIRECT DEPENDENCIES: Session Runtime System, Browser Execution System, Tool Execution System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Continuity Evidence System, Repair / Rollback System, Conflict Memory System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: action provenance collector
+PARENT SYSTEM: Provenance System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Browser Execution System, Tool Execution System, Read-Only Reader System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Provenance System
+DIRECT DEPENDENCIES: Browser Execution System, Tool Execution System, Read-Only Reader System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Trust Threshold System, Conflict Memory System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: provider provenance collector
+PARENT SYSTEM: Provenance System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Browser Execution System, Tool Execution System, Read-Only Reader System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Provenance System
+DIRECT DEPENDENCIES: Browser Execution System, Tool Execution System, Read-Only Reader System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Trust Threshold System, Conflict Memory System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: memory provenance collector
+PARENT SYSTEM: Provenance System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Browser Execution System, Tool Execution System, Read-Only Reader System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Provenance System
+DIRECT DEPENDENCIES: Browser Execution System, Tool Execution System, Read-Only Reader System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Trust Threshold System, Conflict Memory System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: provenance export formatter
+PARENT SYSTEM: Provenance System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Browser Execution System, Tool Execution System, Read-Only Reader System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Provenance System
+DIRECT DEPENDENCIES: Browser Execution System, Tool Execution System, Read-Only Reader System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Trust Threshold System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Receipt Chain System, Trust Threshold System, Conflict Memory System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: rollback evidence linker
+PARENT SYSTEM: Repair / Rollback System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Receipt Chain System, Provenance System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Repair / Rollback System
+DIRECT DEPENDENCIES: Receipt Chain System, Provenance System, Conflict Memory System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System, Approval System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Stability Regulation System, Action Legality System, Approval System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: recovery planner
+PARENT SYSTEM: Repair / Rollback System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Receipt Chain System, Provenance System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Repair / Rollback System
+DIRECT DEPENDENCIES: Receipt Chain System, Provenance System, Conflict Memory System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System, Approval System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Stability Regulation System, Action Legality System, Approval System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: degraded-mode switcher
+PARENT SYSTEM: Repair / Rollback System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Receipt Chain System, Provenance System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Repair / Rollback System
+DIRECT DEPENDENCIES: Receipt Chain System, Provenance System, Conflict Memory System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System, Approval System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Stability Regulation System, Action Legality System, Approval System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: repair receipt writer
+PARENT SYSTEM: Repair / Rollback System
+PARENT LAYER: AUDIT / RECOVERY LAYER
+REQUIRED INPUTS: Receipt Chain System, Provenance System, Conflict Memory System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Repair / Rollback System
+DIRECT DEPENDENCIES: Receipt Chain System, Provenance System, Conflict Memory System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System, Approval System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Stability Regulation System, Action Legality System, Approval System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: load monitor
+PARENT SYSTEM: Burden Signaling System
+PARENT LAYER: STATE / SUPPORT LAYER
+REQUIRED INPUTS: Session Runtime System, Tool Execution System, Browser Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Burden Signaling System
+DIRECT DEPENDENCIES: Session Runtime System, Tool Execution System, Browser Execution System
+REGULATORS: Repair / Rollback System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Stability Regulation System, Context Assembly System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: failure pressure counter
+PARENT SYSTEM: Burden Signaling System
+PARENT LAYER: STATE / SUPPORT LAYER
+REQUIRED INPUTS: Session Runtime System, Tool Execution System, Browser Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Burden Signaling System
+DIRECT DEPENDENCIES: Session Runtime System, Tool Execution System, Browser Execution System
+REGULATORS: Repair / Rollback System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Stability Regulation System, Context Assembly System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: queue burden signaler
+PARENT SYSTEM: Burden Signaling System
+PARENT LAYER: STATE / SUPPORT LAYER
+REQUIRED INPUTS: Session Runtime System, Tool Execution System, Browser Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Burden Signaling System
+DIRECT DEPENDENCIES: Session Runtime System, Tool Execution System, Browser Execution System
+REGULATORS: Repair / Rollback System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Stability Regulation System, Context Assembly System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: overload alert emitter
+PARENT SYSTEM: Burden Signaling System
+PARENT LAYER: STATE / SUPPORT LAYER
+REQUIRED INPUTS: Session Runtime System, Tool Execution System, Browser Execution System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Burden Signaling System
+DIRECT DEPENDENCIES: Session Runtime System, Tool Execution System, Browser Execution System
+REGULATORS: Repair / Rollback System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Stability Regulation System, Context Assembly System, Action Legality System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: stability signal aggregator
+PARENT SYSTEM: Stability Regulation System
+PARENT LAYER: STATE / SUPPORT LAYER
+REQUIRED INPUTS: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Stability Regulation System
+DIRECT DEPENDENCIES: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Routing / Workflow Packet System, Session Runtime System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: pace governor
+PARENT SYSTEM: Stability Regulation System
+PARENT LAYER: STATE / SUPPORT LAYER
+REQUIRED INPUTS: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Stability Regulation System
+DIRECT DEPENDENCIES: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Routing / Workflow Packet System, Session Runtime System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: concurrency limiter
+PARENT SYSTEM: Stability Regulation System
+PARENT LAYER: STATE / SUPPORT LAYER
+REQUIRED INPUTS: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Stability Regulation System
+DIRECT DEPENDENCIES: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Routing / Workflow Packet System, Session Runtime System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: safe-hold trigger
+PARENT SYSTEM: Stability Regulation System
+PARENT LAYER: STATE / SUPPORT LAYER
+REQUIRED INPUTS: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Stability Regulation System
+DIRECT DEPENDENCIES: Burden Signaling System, Repair / Rollback System, Continuity Evidence System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Action Legality System, Routing / Workflow Packet System, Session Runtime System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: single-node readiness gate
+PARENT SYSTEM: Federation Readiness System
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Federation Readiness System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Federated Continuity System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: federated contract validator
+PARENT SYSTEM: Federation Readiness System
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Federation Readiness System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Federated Continuity System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: sync safety checker
+PARENT SYSTEM: Federation Readiness System
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Federation Readiness System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Federated Continuity System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: federation unlock receipt
+PARENT SYSTEM: Federation Readiness System
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+REQUIRED INPUTS: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Federation Readiness System
+DIRECT DEPENDENCIES: Durable Memory Authority System, Action Legality System, Repair / Rollback System
+REGULATORS: Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Federated Continuity System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: cross-node receipt replicator
+PARENT SYSTEM: Federated Continuity System
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+REQUIRED INPUTS: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Federated Continuity System
+DIRECT DEPENDENCIES: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+REGULATORS: Trust Threshold System, Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Federated Continuity System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: federated memory sync bridge
+PARENT SYSTEM: Federated Continuity System
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+REQUIRED INPUTS: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Federated Continuity System
+DIRECT DEPENDENCIES: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+REGULATORS: Trust Threshold System, Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Federated Continuity System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: node identity coordinator
+PARENT SYSTEM: Federated Continuity System
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+REQUIRED INPUTS: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Federated Continuity System
+DIRECT DEPENDENCIES: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+REGULATORS: Trust Threshold System, Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Federated Continuity System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.
+
+SUBSYSTEM: divergence detector
+PARENT SYSTEM: Federated Continuity System
+PARENT LAYER: FEDERATION / REPLICATION LAYER
+REQUIRED INPUTS: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+PRODUCED OUTPUTS: published state, events, or receipts supporting Federated Continuity System
+DIRECT DEPENDENCIES: Federation Readiness System, Receipt Chain System, Continuity Evidence System
+REGULATORS: Trust Threshold System, Identity / Doctrine Inheritance System
+VALIDATION DEPENDENCIES: Receipt Chain System, Provenance System
+REPAIR DEPENDENCIES: Repair / Rollback System
+CONTAINMENT / CLEARANCE DEPENDENCIES: Action Legality System
+AUDIT / RECEIPT DEPENDENCIES: Receipt Chain System, Provenance System
+CONTINUITY ANCHORS: Continuity Evidence System
+KNOWN OR LIKELY FAILURE COUPLINGS: Federated Continuity System
+POSSIBLE DUPLICATE MECHANISMS: Review overlap with adjacent shell or substrate adapters before implementing parallel truth stores.
+POSSIBLE MISSING SUPPORT SUBSYSTEMS: Retry, metrics, and admin inspection helpers may still need explicit implementation after first pass.

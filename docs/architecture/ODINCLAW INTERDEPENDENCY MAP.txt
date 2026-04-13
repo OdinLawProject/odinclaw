@@ -1,0 +1,94 @@
+ODINCLAW INTERDEPENDENCY MAP
+==================================================
+
+PRODUCERS -> CONSUMERS
+----------------------
+- Session Runtime System -> Continuity Evidence System, Receipt Chain System, Interaction Surface System
+- Browser Execution System -> Provenance System, Receipt Chain System, Read-Only Reader System, Repair / Rollback System
+- Tool Execution System -> Provenance System, Receipt Chain System, Context Assembly System
+- Durable Memory Authority System -> Context Assembly System, Conflict Memory System, Trust Threshold System
+- Codex Knowledge System -> Context Assembly System, Identity / Doctrine Inheritance System, Action Legality System
+- Burden Signaling System -> Stability Regulation System, Action Legality System, Routing / Workflow Packet System
+
+REGULATORS -> REGULATED
+-----------------------
+- Action Legality System -> Browser Execution System, Tool Execution System, Durable Memory Authority System
+- Approval System -> high-risk browser actions, tool actions, and durable internal mutations
+- Trust Threshold System -> Input Classification System, Context Assembly System, Plugin Host System, Action Legality System
+- Stability Regulation System -> Session Runtime System, Routing / Workflow Packet System, Action Legality System
+
+TRANSPORT ROUTES
+----------------
+- Interaction Surface System carries ingress and egress between operator and runtime.
+- Browser Execution System and Tool Execution System are the two main outward execution routes.
+- Read-Only Reader System is the low-trust intake route for unsafe content.
+
+WASTE / CLEARANCE ROUTES
+------------------------
+- Conflict Memory System and Repair / Rollback System carry contradiction and failure residue toward governed recovery.
+- Session Compactor and Durable Memory arbitration prevent runtime clutter from becoming durable truth.
+
+REPAIR ROUTES
+-------------
+- Receipt Chain System -> Provenance System -> Repair / Rollback System
+- Conflict Memory System -> Trust Threshold System -> Repair / Rollback System
+- Burden Signaling System -> Stability Regulation System -> safe hold or degraded mode
+
+GOVERNANCE CHOKEPOINTS
+----------------------
+- Action Legality System
+- Approval System
+- Risk Classification System
+- Trust Threshold System
+
+TRUST / PERMISSION CHOKEPOINTS
+------------------------------
+- Input Classification System
+- Trust Threshold System
+- Read-Only Reader System
+
+CONTINUITY ANCHORS
+------------------
+- Continuity Evidence System
+- Durable Memory Authority System
+- Identity / Doctrine Inheritance System
+- Receipt Chain System
+
+CROSS-LAYER COUPLING
+--------------------
+- Shell interaction couples into ODIN governance through shared action IDs, trace IDs, and receipts.
+- Durable memory couples into context assembly, trust thresholds, and legality.
+- Provenance couples into trust, repair, and durable memory.
+- Burden signaling couples state into governance and routing rather than leaving the shell stateless.
+
+BOTTLENECKS
+-----------
+- Action Legality System
+- Context Assembly System
+- Durable Memory Authority System
+- Receipt Chain System
+- Trust Threshold System
+
+DEAD ENDS
+---------
+- Session-local memory without ODIN arbitration would become a dead end for durable continuity.
+- Browser execution without receipt or provenance emission becomes an audit dead end.
+
+DUPLICATED MECHANISMS
+---------------------
+- OpenClaw session memory vs ODIN durable memory
+- OpenClaw plugin trust assumptions vs ODIN trust thresholds
+- Shell-level logging vs ODIN receipts and provenance
+
+HIGHLY OVERLOADED SYSTEMS
+-------------------------
+- Action Legality System if risk, trust, memory, and repair all collapse into one gate
+- Context Assembly System if all Codex, doctrine, memory, and shell transcript are injected indiscriminately
+- Durable Memory Authority System if ephemeral state is written as durable truth
+
+LIKELY MISSING ORGANS / SYSTEMS / SUBSYSTEMS
+--------------------------------------------
+- Explicit confidence update beyond contradiction warnings
+- Operator preference modeling separate from inherited doctrine
+- Richer resource metrics under heavy multi-tool load
+- Separate file-only reader path if attachment load becomes important

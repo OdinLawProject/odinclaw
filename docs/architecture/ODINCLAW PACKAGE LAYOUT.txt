@@ -1,0 +1,27 @@
+ODINCLAW PACKAGE LAYOUT
+==================================================
+
+odinclaw/
+  shell/
+  odin/
+    governance/
+    trust/
+    continuity/
+    identity/
+    memory/
+    knowledge/
+    context/
+    audit/
+    repair/
+    state/
+    orchestration/
+    federation/
+  contracts/
+  tests/
+
+RULES
+--------------------------------------------------
+- do not create overloaded `brain.py` style sink files
+- keep shell and substrate separated
+- use `contracts/` for shared interfaces
+- freeze contracts before consumers

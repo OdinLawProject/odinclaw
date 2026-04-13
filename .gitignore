@@ -1,0 +1,39 @@
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Tools / caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Build
+dist/
+build/
+
+# Environment — never commit real credentials
+.env
+.env.*
+!.env.example
+
+# Data directory
+.odinclaw/
+~/.odinclaw/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+

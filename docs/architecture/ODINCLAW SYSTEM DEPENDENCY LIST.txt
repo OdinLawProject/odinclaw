@@ -1,0 +1,1016 @@
+ODINCLAW SYSTEM DEPENDENCY LIST
+==================================================
+
+INTERFACE / SESSION SURFACE LAYER
+----------------
+
+SYSTEM: Session Runtime System
+LAYER: INTERFACE / SESSION SURFACE LAYER
+UPSTREAM DEPENDENCIES:
+- NONE IDENTIFIED
+DOWNSTREAM DEPENDENTS:
+- Interaction Surface System
+- Receipt Chain System
+- Continuity Evidence System
+REGULATORS:
+- Action Legality System
+- Stability Regulation System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- session explosion
+- trace mismatch
+LIKELY SINGLE POINTS OF FAILURE:
+- trace id allocator
+REDUNDANCY NOTES:
+- Can be backed by session restoration later, but should begin as one clear runtime authority.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let durable identity drift into this system.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if it starts owning durable memory or governance state.
+
+SYSTEM: Interaction Surface System
+LAYER: INTERFACE / SESSION SURFACE LAYER
+UPSTREAM DEPENDENCIES:
+- Session Runtime System
+DOWNSTREAM DEPENDENTS:
+- Action Legality System
+- Read-Only Reader System
+- Context Assembly System
+REGULATORS:
+- Action Legality System
+- Trust Threshold System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Input Classification System
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Session Runtime System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- ingress burst
+- surface ambiguity
+LIKELY SINGLE POINTS OF FAILURE:
+- command parser
+REDUNDANCY NOTES:
+- Multiple interaction modes can share the same legality and receipt bridges.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not bury trust classification entirely in the UI layer.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if it begins handling trust, memory, and routing by itself.
+
+EXECUTION SURFACE LAYER
+----------------
+
+SYSTEM: Browser Execution System
+LAYER: EXECUTION SURFACE LAYER
+UPSTREAM DEPENDENCIES:
+- Interaction Surface System
+- Action Legality System
+DOWNSTREAM DEPENDENTS:
+- Receipt Chain System
+- Provenance System
+- Repair / Rollback System
+REGULATORS:
+- Action Legality System
+- Risk Classification System
+- Trust Threshold System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Read-Only Reader System
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Interaction Surface System
+- Action Legality System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- DOM noise
+- unsafe mutation
+LIKELY SINGLE POINTS OF FAILURE:
+- mutation action guard
+REDUNDANCY NOTES:
+- Read-only browsing and mutating browsing should split later if load increases.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let this system decide final legality on its own.
+POSSIBLE OVERLOAD CONDITIONS:
+- High under mixed read-only and credentialed action load.
+
+SYSTEM: Tool Execution System
+LAYER: EXECUTION SURFACE LAYER
+UPSTREAM DEPENDENCIES:
+- Interaction Surface System
+- Action Legality System
+DOWNSTREAM DEPENDENTS:
+- Receipt Chain System
+- Provenance System
+- Context Assembly System
+REGULATORS:
+- Action Legality System
+- Risk Classification System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Interaction Surface System
+- Action Legality System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- tool timeout
+- tool mismatch
+LIKELY SINGLE POINTS OF FAILURE:
+- execution envelope
+REDUNDANCY NOTES:
+- Specific tool adapters can later split by action class.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let tool execution own workflow memory.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if unbounded tool retries are allowed.
+
+SYSTEM: Plugin Host System
+LAYER: EXECUTION SURFACE LAYER
+UPSTREAM DEPENDENCIES:
+- Interaction Surface System
+DOWNSTREAM DEPENDENTS:
+- Tool Execution System
+- Input Classification System
+REGULATORS:
+- Trust Threshold System
+- Action Legality System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Input Classification System
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Interaction Surface System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- plugin sprawl
+- capability ambiguity
+LIKELY SINGLE POINTS OF FAILURE:
+- plugin capability manifest
+REDUNDANCY NOTES:
+- Plugin registry and isolation can separate later.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let plugin metadata become the final trust authority.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if community plugins are loaded without classification and policy.
+
+GOVERNANCE / RISK LAYER
+----------------
+
+SYSTEM: Action Legality System
+LAYER: GOVERNANCE / RISK LAYER
+UPSTREAM DEPENDENCIES:
+- Interaction Surface System
+- Risk Classification System
+- Trust Threshold System
+DOWNSTREAM DEPENDENTS:
+- Browser Execution System
+- Tool Execution System
+- Approval System
+- Receipt Chain System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+- Read-Only Reader System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+- Identity / Doctrine Inheritance System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Interaction Surface System
+- Risk Classification System
+- Trust Threshold System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- policy fan-out
+- action ambiguity
+LIKELY SINGLE POINTS OF FAILURE:
+- policy check engine
+REDUNDANCY NOTES:
+- Later can be backed by cached decision classes, but one canonical policy engine should remain authoritative.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not move durable trust updates into legality checks.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if all trust, repair, and memory arbitration logic is collapsed here.
+
+SYSTEM: Approval System
+LAYER: GOVERNANCE / RISK LAYER
+UPSTREAM DEPENDENCIES:
+- Action Legality System
+- Risk Classification System
+DOWNSTREAM DEPENDENTS:
+- Browser Execution System
+- Tool Execution System
+- Receipt Chain System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Action Legality System
+- Risk Classification System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- approval latency
+LIKELY SINGLE POINTS OF FAILURE:
+- operator approval bridge
+REDUNDANCY NOTES:
+- Later can add auto-approval bands, but human bridge remains initial release path.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let approval semantics leak into shell UI rules only.
+POSSIBLE OVERLOAD CONDITIONS:
+- Moderate if too many medium-risk actions are misclassified as approval-only.
+
+SYSTEM: Risk Classification System
+LAYER: GOVERNANCE / RISK LAYER
+UPSTREAM DEPENDENCIES:
+- Interaction Surface System
+- Browser Execution System
+- Tool Execution System
+DOWNSTREAM DEPENDENTS:
+- Action Legality System
+- Approval System
+- Trust Threshold System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Interaction Surface System
+- Browser Execution System
+- Tool Execution System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- classification ambiguity
+LIKELY SINGLE POINTS OF FAILURE:
+- risk envelope classifier
+REDUNDANCY NOTES:
+- Can later split by execution surface, but should start with one canonical classifier.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not fold final trust decisions into this system.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if dynamic trust and static risk are not separated.
+
+TRUST / BOUNDARY LAYER
+----------------
+
+SYSTEM: Input Classification System
+LAYER: TRUST / BOUNDARY LAYER
+UPSTREAM DEPENDENCIES:
+- Interaction Surface System
+- Plugin Host System
+- Read-Only Reader System
+DOWNSTREAM DEPENDENTS:
+- Trust Threshold System
+- Context Assembly System
+- Action Legality System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Conflict Memory System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Interaction Surface System
+- Plugin Host System
+- Read-Only Reader System
+- Receipt Chain System
+- Conflict Memory System
+LIKELY BOTTLENECKS:
+- classification ambiguity
+- source sprawl
+LIKELY SINGLE POINTS OF FAILURE:
+- self/non-self classifier
+REDUNDANCY NOTES:
+- Can later split source type classification from content classification.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let it become the only gate; thresholds still need to exist separately.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if every trust decision is stored as a one-off rule instead of structured classes.
+
+SYSTEM: Trust Threshold System
+LAYER: TRUST / BOUNDARY LAYER
+UPSTREAM DEPENDENCIES:
+- Input Classification System
+- Risk Classification System
+- Conflict Memory System
+DOWNSTREAM DEPENDENTS:
+- Action Legality System
+- Context Assembly System
+- Plugin Host System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Conflict Memory System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Input Classification System
+- Risk Classification System
+- Conflict Memory System
+- Receipt Chain System
+- Conflict Memory System
+LIKELY BOTTLENECKS:
+- threshold drift
+LIKELY SINGLE POINTS OF FAILURE:
+- threshold evaluator
+REDUNDANCY NOTES:
+- Threshold caches can exist later, but one canonical trust register should stay authoritative.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let the shell own final trust thresholds.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if all page, plugin, provider, and memory trust state accumulates without classes.
+
+SYSTEM: Read-Only Reader System
+LAYER: TRUST / BOUNDARY LAYER
+UPSTREAM DEPENDENCIES:
+- Interaction Surface System
+- Browser Execution System
+DOWNSTREAM DEPENDENTS:
+- Input Classification System
+- Context Assembly System
+- Provenance System
+REGULATORS:
+- Trust Threshold System
+- Action Legality System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Interaction Surface System
+- Browser Execution System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- unsafe content volume
+LIKELY SINGLE POINTS OF FAILURE:
+- content sanitizer
+REDUNDANCY NOTES:
+- Later may split web reader and file reader variants.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not allow it to silently mutate state or click onward.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if it becomes a general execution surrogate instead of a read-only path.
+
+CONTINUITY / IDENTITY LAYER
+----------------
+
+SYSTEM: Continuity Evidence System
+LAYER: CONTINUITY / IDENTITY LAYER
+UPSTREAM DEPENDENCIES:
+- Session Runtime System
+- Receipt Chain System
+DOWNSTREAM DEPENDENTS:
+- Durable Memory Authority System
+- Repair / Rollback System
+- Context Assembly System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Identity / Doctrine Inheritance System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Session Runtime System
+- Receipt Chain System
+- Receipt Chain System
+- Identity / Doctrine Inheritance System
+LIKELY BOTTLENECKS:
+- lineage drift
+LIKELY SINGLE POINTS OF FAILURE:
+- cross-session continuity linker
+REDUNDANCY NOTES:
+- Receipts and memory together provide backup evidence, but one linker remains primary.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not confuse continuity evidence with the whole identity model.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if every semantic decision tries to live inside lineage records.
+
+SYSTEM: Identity / Doctrine Inheritance System
+LAYER: CONTINUITY / IDENTITY LAYER
+UPSTREAM DEPENDENCIES:
+- Continuity Evidence System
+- Codex Knowledge System
+DOWNSTREAM DEPENDENTS:
+- Action Legality System
+- Context Assembly System
+- Trust Threshold System
+REGULATORS:
+- Durable Memory Authority System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Continuity Evidence System
+- Codex Knowledge System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- doctrine drift
+LIKELY SINGLE POINTS OF FAILURE:
+- inherited doctrine store
+REDUNDANCY NOTES:
+- Doctrine copies may exist in Codex packs, but one inherited store should govern runtime behavior.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not leave doctrine only in prompts or documents.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if all policy, trust, and identity are collapsed into one monolithic doctrine blob.
+
+MEMORY / KNOWLEDGE LAYER
+----------------
+
+SYSTEM: Durable Memory Authority System
+LAYER: MEMORY / KNOWLEDGE LAYER
+UPSTREAM DEPENDENCIES:
+- Continuity Evidence System
+- Identity / Doctrine Inheritance System
+DOWNSTREAM DEPENDENTS:
+- Context Assembly System
+- Conflict Memory System
+- Trust Threshold System
+REGULATORS:
+- Action Legality System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Continuity Evidence System
+- Identity / Doctrine Inheritance System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- memory arbitration conflict
+LIKELY SINGLE POINTS OF FAILURE:
+- memory arbitration engine
+REDUNDANCY NOTES:
+- Session memory remains operational, but durable truth authority must stay singular.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let OpenClaw session memory become a shadow durable store.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if every ephemeral note is treated as durable memory.
+
+SYSTEM: Conflict Memory System
+LAYER: MEMORY / KNOWLEDGE LAYER
+UPSTREAM DEPENDENCIES:
+- Durable Memory Authority System
+- Receipt Chain System
+- Trust Threshold System
+DOWNSTREAM DEPENDENTS:
+- Context Assembly System
+- Trust Threshold System
+- Repair / Rollback System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Durable Memory Authority System
+- Receipt Chain System
+- Trust Threshold System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- conflict accumulation
+LIKELY SINGLE POINTS OF FAILURE:
+- contradiction record writer
+REDUNDANCY NOTES:
+- Future confidence systems can complement it, but contradiction retention should remain explicit.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not collapse this into generic note-taking or issue logs.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if every minor mismatch becomes a major conflict object.
+
+SYSTEM: Codex Knowledge System
+LAYER: MEMORY / KNOWLEDGE LAYER
+UPSTREAM DEPENDENCIES:
+- Identity / Doctrine Inheritance System
+DOWNSTREAM DEPENDENTS:
+- Context Assembly System
+- Action Legality System
+- Durable Memory Authority System
+REGULATORS:
+- Trust Threshold System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Identity / Doctrine Inheritance System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- pack sprawl
+- context flooding
+LIKELY SINGLE POINTS OF FAILURE:
+- provenance-rated retriever
+REDUNDANCY NOTES:
+- Knowledge packs can shard later, but one retrieval authority should rank them.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not treat Codex as unfiltered world-memory or prompt stuffing.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if broad low-trust corpora are loaded without policy.
+
+CONTEXT / ORCHESTRATION LAYER
+----------------
+
+SYSTEM: Context Assembly System
+LAYER: CONTEXT / ORCHESTRATION LAYER
+UPSTREAM DEPENDENCIES:
+- Durable Memory Authority System
+- Identity / Doctrine Inheritance System
+- Input Classification System
+DOWNSTREAM DEPENDENTS:
+- Action Legality System
+- Tool Execution System
+- Browser Execution System
+REGULATORS:
+- Trust Threshold System
+- Stability Regulation System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Durable Memory Authority System
+- Identity / Doctrine Inheritance System
+- Input Classification System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- context budget
+- context noise
+LIKELY SINGLE POINTS OF FAILURE:
+- continuity context selector
+REDUNDANCY NOTES:
+- Can later split per action class, but one context engine contract should remain canonical.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let shell transcript alone define context.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if all memory and all Codex material are injected indiscriminately.
+
+SYSTEM: Routing / Workflow Packet System
+LAYER: CONTEXT / ORCHESTRATION LAYER
+UPSTREAM DEPENDENCIES:
+- Context Assembly System
+- Codex Knowledge System
+- Conflict Memory System
+DOWNSTREAM DEPENDENTS:
+- Tool Execution System
+- Browser Execution System
+- Action Legality System
+REGULATORS:
+- Trust Threshold System
+- Stability Regulation System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Context Assembly System
+- Codex Knowledge System
+- Conflict Memory System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- route drift
+LIKELY SINGLE POINTS OF FAILURE:
+- workflow packet selector
+REDUNDANCY NOTES:
+- Fallback planning can still exist, but recurring task packets should reduce repeated inference.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not bury governance inside route heuristics.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if every task becomes a packet before it is validated.
+
+AUDIT / RECOVERY LAYER
+----------------
+
+SYSTEM: Receipt Chain System
+LAYER: AUDIT / RECOVERY LAYER
+UPSTREAM DEPENDENCIES:
+- Session Runtime System
+- Browser Execution System
+- Tool Execution System
+DOWNSTREAM DEPENDENTS:
+- Continuity Evidence System
+- Repair / Rollback System
+- Conflict Memory System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- NONE IDENTIFIED
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Session Runtime System
+- Browser Execution System
+- Tool Execution System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- receipt volume
+- chain break
+LIKELY SINGLE POINTS OF FAILURE:
+- receipt writer
+REDUNDANCY NOTES:
+- Indexes and verifiers can replicate the chain later, but one canonical writer should remain authoritative.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not treat analytics logs as receipts.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if low-value noise crowds out meaningful action receipts.
+
+SYSTEM: Provenance System
+LAYER: AUDIT / RECOVERY LAYER
+UPSTREAM DEPENDENCIES:
+- Browser Execution System
+- Tool Execution System
+- Read-Only Reader System
+DOWNSTREAM DEPENDENTS:
+- Receipt Chain System
+- Trust Threshold System
+- Conflict Memory System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Trust Threshold System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Browser Execution System
+- Tool Execution System
+- Read-Only Reader System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- source ambiguity
+LIKELY SINGLE POINTS OF FAILURE:
+- action provenance collector
+REDUNDANCY NOTES:
+- Collectors can split by source type later, but one export format should remain canonical.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not confuse provenance with trust; trust uses provenance but is not identical.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if every ephemeral UI artifact gets provenance weight equal to durable actions.
+
+SYSTEM: Repair / Rollback System
+LAYER: AUDIT / RECOVERY LAYER
+UPSTREAM DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+- Conflict Memory System
+DOWNSTREAM DEPENDENTS:
+- Stability Regulation System
+- Action Legality System
+- Approval System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- NONE IDENTIFIED
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+- Approval System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+- Conflict Memory System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- rollback uncertainty
+LIKELY SINGLE POINTS OF FAILURE:
+- recovery planner
+REDUNDANCY NOTES:
+- Later can split epistemic repair from execution repair, but initial path should be unified.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not reduce repair to log replay alone.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if every error triggers full rollback instead of graded recovery.
+
+STATE / SUPPORT LAYER
+----------------
+
+SYSTEM: Burden Signaling System
+LAYER: STATE / SUPPORT LAYER
+UPSTREAM DEPENDENCIES:
+- Session Runtime System
+- Tool Execution System
+- Browser Execution System
+DOWNSTREAM DEPENDENTS:
+- Stability Regulation System
+- Context Assembly System
+- Action Legality System
+REGULATORS:
+- Repair / Rollback System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Session Runtime System
+- Tool Execution System
+- Browser Execution System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- signal lag
+LIKELY SINGLE POINTS OF FAILURE:
+- load monitor
+REDUNDANCY NOTES:
+- Later can split resource, contradiction, and execution burden into separate tracks.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not hide overload only inside OS metrics.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if signal smoothing erases real distress.
+
+SYSTEM: Stability Regulation System
+LAYER: STATE / SUPPORT LAYER
+UPSTREAM DEPENDENCIES:
+- Burden Signaling System
+- Repair / Rollback System
+- Continuity Evidence System
+DOWNSTREAM DEPENDENTS:
+- Action Legality System
+- Routing / Workflow Packet System
+- Session Runtime System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Burden Signaling System
+- Repair / Rollback System
+- Continuity Evidence System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- over-throttling
+- under-throttling
+LIKELY SINGLE POINTS OF FAILURE:
+- stability signal aggregator
+REDUNDANCY NOTES:
+- Later can split pace and concurrency control, but early stability should remain unified.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let shell UX pacing masquerade as organism-level stability regulation.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if all runtime decision pressure is pushed into this system.
+
+FEDERATION / REPLICATION LAYER
+----------------
+
+SYSTEM: Federation Readiness System
+LAYER: FEDERATION / REPLICATION LAYER
+UPSTREAM DEPENDENCIES:
+- Durable Memory Authority System
+- Action Legality System
+- Repair / Rollback System
+DOWNSTREAM DEPENDENTS:
+- Federated Continuity System
+REGULATORS:
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Durable Memory Authority System
+- Action Legality System
+- Repair / Rollback System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- premature unlock
+LIKELY SINGLE POINTS OF FAILURE:
+- single-node readiness gate
+REDUNDANCY NOTES:
+- Readiness checks can fan out later, but one gate should authorize unlock.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not let operators enable federation by bypassing readiness checks.
+POSSIBLE OVERLOAD CONDITIONS:
+- Low until federation planning begins.
+
+SYSTEM: Federated Continuity System
+LAYER: FEDERATION / REPLICATION LAYER
+UPSTREAM DEPENDENCIES:
+- Federation Readiness System
+- Receipt Chain System
+- Continuity Evidence System
+DOWNSTREAM DEPENDENTS:
+- NONE IDENTIFIED
+REGULATORS:
+- Trust Threshold System
+- Identity / Doctrine Inheritance System
+TRANSPORT DEPENDENCIES:
+- NONE IDENTIFIED
+REPAIR DEPENDENCIES:
+- Repair / Rollback System
+AUDIT / RECEIPT DEPENDENCIES:
+- Receipt Chain System
+- Provenance System
+CONTAINMENT / SAFETY DEPENDENCIES:
+- Action Legality System
+CONTINUITY DEPENDENCIES:
+- Continuity Evidence System
+FAILURE-SENSITIVE DEPENDENCIES:
+- Federation Readiness System
+- Receipt Chain System
+- Continuity Evidence System
+- Receipt Chain System
+- Continuity Evidence System
+LIKELY BOTTLENECKS:
+- node divergence
+- sync trust
+LIKELY SINGLE POINTS OF FAILURE:
+- node identity coordinator
+REDUNDANCY NOTES:
+- Future nodes can cross-check each other, but initial federation must remain conservative.
+POSSIBLE MISPLACED FUNCTIONS:
+- Do not enable cross-node memory sync before single-node trust is stable.
+POSSIBLE OVERLOAD CONDITIONS:
+- High if federated sync becomes a substitute for local coherence.
