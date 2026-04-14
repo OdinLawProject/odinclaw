@@ -72,10 +72,32 @@ class OdinClawLifecycle:
     startup_steps: list[str] = field(default_factory=list)
     shutdown_steps: list[str] = field(default_factory=list)
     concurrent_holds: int = 0
+    _session_id: str = field(default_factory=str)
+    _run_id: str = field(default_factory=str)
+    parent_session_id: str | None = None
+    parent_run_id: str | None = None
 
     def startup(self) -> ShellExtensionState:
+        from datetime import datetime, timezone
+        from odinclaw.contracts.action_ids import new_session_id, new_run_id
+        from odinclaw.contracts.continuity import ContinuityLink
+
+        self._session_id = new_session_id()
+        self._run_id = new_run_id()
+
         self.startup_steps.append("trace_receipt_services")
         self.startup_steps.append("continuity_services")
+        # Record session start in continuity store
+        self.services.continuity_store.append(
+            ContinuityLink(
+                session_id=self._session_id,
+                run_id=self._run_id,
+                parent_session_id=self.parent_session_id,
+                parent_run_id=self.parent_run_id,
+                reason="session_startup",
+                recorded_at=datetime.now(tz=timezone.utc),
+            )
+        )
         self.startup_steps.append("durable_memory_authority")
         self.services.memory_authority.load()
         self.startup_steps.append("governance_trust_hooks")
@@ -131,6 +153,10 @@ class OdinClawLifecycle:
         )
 
     def preflight(self, request: ActionRequest) -> GovernanceDecision:
+        from datetime import datetime, timezone
+        from odinclaw.contracts.action_ids import new_action_id, new_run_id, new_session_id, TraceIds
+        from odinclaw.contracts.receipts import ReceiptRecord
+
         overload = self._current_overload_signal()
         if overload.level == PACING_HOLD_NEW:
             return GovernanceDecision(
@@ -149,6 +175,29 @@ class OdinClawLifecycle:
                 )
 
         decision = preflight_action(request)
+
+        # Write a governance receipt for every preflight decision so the
+        # receipt chain captures all governance events (ALLOW, HOLD, DENY, ESCALATE).
+        trace_ids = TraceIds(
+            session_id=new_session_id(),
+            run_id=new_run_id(),
+            action_id=new_action_id(),
+        )
+        receipt = ReceiptRecord(
+            receipt_id=f"gov-{trace_ids.action_id}",
+            receipt_type="governance",
+            trace_ids=trace_ids,
+            action_name=request.action_name,
+            created_at=datetime.now(tz=timezone.utc),
+            provenance=request.provenance,
+            data={
+                "action_class": request.action_class.value,
+                "outcome": decision.outcome.value,
+                "reason": decision.reason,
+            },
+        )
+        self.services.receipt_chain.append(receipt)
+
         self.services.memory_authority.record_governance_decision(request=request, decision=decision)
         if decision.outcome == GovernanceOutcome.HOLD:
             self.services.governance_hooks.pending_holds += 1
@@ -440,7 +489,12 @@ class OdinClawLifecycle:
         )
 
 
-def build_lifecycle(root: Path) -> OdinClawLifecycle:
+def build_lifecycle(
+    root: Path,
+    *,
+    parent_session_id: str | None = None,
+    parent_run_id: str | None = None,
+) -> OdinClawLifecycle:
     receipt_chain = ReceiptChain(root / "receipts.jsonl")
     continuity_store = ContinuityEvidenceStore(root / "continuity.jsonl")
     memory_authority = DurableMemoryAuthority(root / "memory.json", receipt_chain=receipt_chain)
@@ -481,4 +535,8 @@ def build_lifecycle(root: Path) -> OdinClawLifecycle:
         trust_hooks=TrustHookSet(),
         context_engine=context_engine,
     )
-    return OdinClawLifecycle(services=services)
+    return OdinClawLifecycle(
+        services=services,
+        parent_session_id=parent_session_id,
+        parent_run_id=parent_run_id,
+    )

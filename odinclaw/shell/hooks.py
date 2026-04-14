@@ -252,11 +252,26 @@ class ShellProductBridge:
         )
 
 
-def attach_odinclaw_shell(root: Path, session_name: str) -> ShellProductBridge:
+def attach_odinclaw_shell(
+    root: Path,
+    session_name: str,
+    *,
+    parent_session_id: str | None = None,
+    parent_run_id: str | None = None,
+) -> ShellProductBridge:
+    """
+    Build a lifecycle and start a session.
+
+    When *parent_session_id* is provided (Feature 5 — continuity evidence),
+    the new session is linked to the previous one so hold state and context
+    survive across restarts.
+    """
     lifecycle = build_lifecycle(root)
     runtime = start_session(
         session_name,
         receipt_chain=lifecycle.services.receipt_chain,
         continuity_store=lifecycle.services.continuity_store,
+        parent_session_id=parent_session_id,
+        parent_run_id=parent_run_id,
     )
     return ShellProductBridge(lifecycle=lifecycle, runtime=runtime)
