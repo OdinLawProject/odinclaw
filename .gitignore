@@ -37,3 +37,17 @@ Thumbs.db
 .vscode/
 .idea/
 
+
+# Binaries and installer artifacts
+*.exe
+*.bmp
+ODIN.bat
+build_exe.bat
+Install-OdinClaw.ps1
+odin_manifest.json
+install.py
+installer/launch/
+installer/make_images.py
+odinclaw/config.py
+odinclaw/launcher.py
+odinclaw/tray.py
