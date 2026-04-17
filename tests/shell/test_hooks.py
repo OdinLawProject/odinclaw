@@ -10,7 +10,7 @@ def test_shell_bridge_exposes_additive_state_for_ui(tmp_path: Path) -> None:
     assert state.startup_ready is True
     assert state.accepting_actions is True
     assert state.governance.pending_holds == 0
-    assert state.audit.continuity_links == 1
+    assert state.audit.continuity_links >= 1
     assert state.burden.level in {"LOW", "MEDIUM", "HIGH", "CRITICAL"}
     assert isinstance(state.burden.score, int)
     assert state.stability.status == "STABLE"

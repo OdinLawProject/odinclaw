@@ -9,10 +9,17 @@ description = "OdinClaw: ODIN governed AI substrate"
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{name = "Borr"}]
-dependencies = []
+dependencies = [
+    "rich>=13.0",
+    "ollama>=0.2",
+    "pystray>=0.19",
+    "pillow>=10.0",
+]
 
 [project.scripts]
 odinclaw = "odinclaw.cli:main"
+odinclaw-tray = "odinclaw.tray:main"
+odinclaw-launch = "odinclaw.launcher:main"
 
 [project.optional-dependencies]
 dev = [

@@ -1,247 +1,272 @@
-# ODIN Setup Script — embedded by Inno Setup, run at install time
-# Called as: powershell.exe -ExecutionPolicy Bypass -File setup.ps1 <AppDir>
-# Compatible with PowerShell 5.1 (Windows built-in)
+<#
+.SYNOPSIS
+    ODIN post-install setup script.
+    Called by the Inno Setup installer with -InstallDir, -Model, -AutoStart.
+    Also callable standalone for dev/testing.
 
-param([string]$AppDir)
+.PARAMETER InstallDir
+    Root directory where ODIN is installed. Default: current directory.
 
+.PARAMETER Model
+    Ollama model tag to configure. Default: qwen2.5:7b-instruct-q8_0
+
+.PARAMETER AutoStart
+    'true' to register ODIN tray in Windows startup. Default: 'false'
+#>
+param(
+    [string]$InstallDir = $PSScriptRoot,
+    [string]$Model      = "qwen2.5:7b-instruct-q8_0",
+    [string]$AutoStart  = "false"
+)
+
+Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $ProgressPreference    = "SilentlyContinue"
-$LogFile               = Join-Path $AppDir "install.log"
 
-Add-Type -AssemblyName System.Windows.Forms
+$DataDir    = "$env:USERPROFILE\.odinclaw"
+$VenvDir    = Join-Path $InstallDir ".venv"
+$SrcDir     = Join-Path $InstallDir "src\odinclaw"
+$VenvPython = "$VenvDir\Scripts\python.exe"
 
-function Log([string]$msg) {
-    $ts   = Get-Date -Format "HH:mm:ss"
-    $line = "[$ts] $msg"
-    Write-Host $line
-    Add-Content -Path $LogFile -Value $line -ErrorAction SilentlyContinue
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
+function Step([string]$msg) {
+    Write-Host ""
+    Write-Host "  [ ODIN ]  $msg" -ForegroundColor Cyan
 }
 
-function Die([string]$msg) {
-    Log "FATAL: $msg"
-    [System.Windows.Forms.MessageBox]::Show(
-        $msg, "ODIN Setup Failed",
-        [System.Windows.Forms.MessageBoxButtons]::OK,
-        [System.Windows.Forms.MessageBoxIcon]::Error
-    ) | Out-Null
+function OK([string]$msg) {
+    Write-Host "            $msg" -ForegroundColor Green
+}
+
+function Warn([string]$msg) {
+    Write-Host "            $msg" -ForegroundColor Yellow
+}
+
+function Fail([string]$msg) {
+    Write-Host ""
+    Write-Host "  [ERROR]   $msg" -ForegroundColor Red
+    Write-Host ""
     exit 1
 }
 
-New-Item -ItemType Directory -Force -Path $AppDir | Out-Null
-Log "ODIN setup starting — AppDir: $AppDir"
-
-# ─── 1. Locate or install Python 3.12 ────────────────────────────────────────
-
-Log "Checking for Python 3.10+..."
-
-function Find-Python {
-    $candidates = @(
-        "$env:LOCALAPPDATA\Programs\Python\Python312\python.exe",
-        "$env:LOCALAPPDATA\Programs\Python\Python311\python.exe",
-        "$env:LOCALAPPDATA\Programs\Python\Python310\python.exe",
-        "C:\Python312\python.exe",
-        "C:\Program Files\Python312\python.exe"
-    )
-    foreach ($p in $candidates) {
-        if (Test-Path $p) {
-            $v = & $p --version 2>&1
-            if ($v -match "Python 3\.(\d+)" -and [int]$Matches[1] -ge 10) { return $p }
-        }
+function WingetInstall([string]$id, [string]$name) {
+    Write-Host "            Installing $name via winget..." -ForegroundColor DarkCyan
+    try {
+        & winget install --id $id -e --silent `
+            --accept-source-agreements --accept-package-agreements 2>&1 | Out-Null
+        return $LASTEXITCODE -eq 0
+    } catch {
+        return $false
     }
-    # Check PATH
-    $fromPath = Get-Command "python" -ErrorAction SilentlyContinue
-    if ($fromPath) {
-        $v = & $fromPath.Source --version 2>&1
-        if ($v -match "Python 3\.(\d+)" -and [int]$Matches[1] -ge 10) { return $fromPath.Source }
-    }
-    return $null
 }
 
-$PythonExe = Find-Python
+function DownloadAndRun([string]$url, [string]$dest, [string[]]$runArgs) {
+    Write-Host "            Downloading $([System.IO.Path]::GetFileName($url))..." -ForegroundColor DarkCyan
+    Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing
+    & $dest @runArgs | Out-Null
+    Remove-Item $dest -Force -ErrorAction SilentlyContinue
+}
+
+function RefreshPath {
+    $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH","Machine") +
+                ";" +
+                [System.Environment]::GetEnvironmentVariable("PATH","User")
+}
+
+# ── Banner ────────────────────────────────────────────────────────────────────
+
+Write-Host ""
+Write-Host "  ============================================================" -ForegroundColor DarkCyan
+Write-Host "    ODIN  -  Governed AI  |  Setup" -ForegroundColor Cyan
+Write-Host "    Model: $Model" -ForegroundColor DarkCyan
+Write-Host "    Dir:   $InstallDir" -ForegroundColor DarkCyan
+Write-Host "  ============================================================" -ForegroundColor DarkCyan
+
+# ── 1. Python ─────────────────────────────────────────────────────────────────
+
+Step "Checking Python 3.12+..."
+
+$PythonExe = $null
+
+try {
+    $ver = & python -c "import sys; print(sys.version_info >= (3,12))" 2>$null
+    if ($ver -eq "True") {
+        $PythonExe = (Get-Command python -ErrorAction SilentlyContinue).Source
+    }
+} catch {}
+
 if (-not $PythonExe) {
-    Log "Python 3.10+ not found — downloading Python 3.12.10..."
-    $Installer = "$env:TEMP\python-3.12.10-amd64.exe"
-    try {
-        (New-Object System.Net.WebClient).DownloadFile(
-            "https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe",
-            $Installer
-        )
-        Log "Running Python installer silently..."
-        $p = Start-Process -FilePath $Installer `
-            -ArgumentList "/quiet", "InstallAllUsers=0", "PrependPath=1", "Include_test=0" `
-            -Wait -PassThru
-        if ($p.ExitCode -ne 0) { Die "Python installer failed (exit code $($p.ExitCode))" }
+    Warn "Python 3.12+ not found. Installing..."
 
-        $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH","User") + ";" +
-                    [System.Environment]::GetEnvironmentVariable("PATH","Machine")
-        $PythonExe = Find-Python
-    } catch {
-        Die "Could not download Python: $_`n`nInstall Python 3.12 from https://python.org/downloads and re-run ODINSetup.exe"
+    $installed = $false
+    if (Get-Command winget -ErrorAction SilentlyContinue) {
+        $installed = WingetInstall "Python.Python.3.12" "Python 3.12"
     }
+
+    if (-not $installed) {
+        DownloadAndRun `
+            "https://www.python.org/ftp/python/3.12.9/python-3.12.9-amd64.exe" `
+            "$env:TEMP\python_installer.exe" `
+            @("/quiet", "InstallAllUsers=0", "PrependPath=1", "Include_test=0")
+        Start-Sleep -Seconds 3
+    }
+
+    RefreshPath
+
+    foreach ($c in @(
+        "$env:LOCALAPPDATA\Programs\Python\Python312\python.exe",
+        "$env:LOCALAPPDATA\Programs\Python\Python313\python.exe",
+        "$env:ProgramFiles\Python312\python.exe"
+    )) {
+        if (Test-Path $c) { $PythonExe = $c; break }
+    }
+
+    if (-not $PythonExe) {
+        $PythonExe = (Get-Command python -ErrorAction SilentlyContinue).Source
+    }
+
+    if (-not $PythonExe) {
+        Fail "Python installation could not be located. Install Python 3.12 from https://python.org and re-run setup."
+    }
+    OK "Python installed: $PythonExe"
+} else {
+    OK "Python ready: $PythonExe"
 }
-if (-not $PythonExe) { Die "Python 3.10+ not found after install attempt." }
-Log "Python: $( & $PythonExe --version 2>&1 ) at $PythonExe"
 
-# ─── 2. Locate or install Ollama ─────────────────────────────────────────────
+# ── 2. Ollama ─────────────────────────────────────────────────────────────────
 
-Log "Checking for Ollama..."
+Step "Checking Ollama..."
 
-function Find-Ollama {
-    $found = Get-Command "ollama" -ErrorAction SilentlyContinue
-    if ($found) { return $found.Source }
-    $candidates = @(
-        "$env:LOCALAPPDATA\Programs\Ollama\ollama.exe",
-        "C:\Program Files\Ollama\ollama.exe"
-    )
-    foreach ($p in $candidates) { if (Test-Path $p) { return $p } }
-    return $null
-}
-
-$OllamaExe = Find-Ollama
+$OllamaExe = (Get-Command ollama -ErrorAction SilentlyContinue).Source
 if (-not $OllamaExe) {
-    Log "Ollama not found — downloading OllamaSetup.exe..."
-    $Installer = "$env:TEMP\OllamaSetup.exe"
-    try {
-        (New-Object System.Net.WebClient).DownloadFile(
-            "https://ollama.com/download/OllamaSetup.exe",
-            $Installer
-        )
-        Log "Running Ollama installer silently..."
-        $p = Start-Process -FilePath $Installer -ArgumentList "/S" -Wait -PassThru
-        if ($p.ExitCode -ne 0) {
-            Log "Warning: Ollama installer returned exit code $($p.ExitCode)"
-        }
-        $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH","User") + ";" +
-                    [System.Environment]::GetEnvironmentVariable("PATH","Machine")
-        $OllamaExe = Find-Ollama
-    } catch {
-        Log "Warning: Ollama download/install failed: $_ — install later from https://ollama.com"
+    $known = "$env:LOCALAPPDATA\Programs\Ollama\ollama.exe"
+    if (Test-Path $known) { $OllamaExe = $known }
+}
+
+if ($OllamaExe) {
+    OK "Ollama ready: $OllamaExe"
+} else {
+    Warn "Ollama not found. Installing..."
+
+    $installed = $false
+    if (Get-Command winget -ErrorAction SilentlyContinue) {
+        $installed = WingetInstall "Ollama.Ollama" "Ollama"
     }
+
+    if (-not $installed) {
+        DownloadAndRun `
+            "https://github.com/ollama/ollama/releases/latest/download/OllamaSetup.exe" `
+            "$env:TEMP\OllamaSetup.exe" `
+            @("/S")
+        Start-Sleep -Seconds 5
+    }
+
+    RefreshPath
+
+    $OllamaExe = (Get-Command ollama -ErrorAction SilentlyContinue).Source
+    if (-not $OllamaExe) {
+        $known = "$env:LOCALAPPDATA\Programs\Ollama\ollama.exe"
+        if (Test-Path $known) { $OllamaExe = $known }
+    }
+
+    if (-not $OllamaExe) {
+        Fail "Ollama could not be located after install. Install from https://ollama.com and re-run."
+    }
+    OK "Ollama installed: $OllamaExe"
 }
 
-if ($OllamaExe) {
-    Log "Ollama: $OllamaExe"
-    # Security: bind Ollama to localhost only
-    [System.Environment]::SetEnvironmentVariable("OLLAMA_HOST",    "127.0.0.1",         "User")
-    [System.Environment]::SetEnvironmentVariable("OLLAMA_ORIGINS", "http://localhost",   "User")
-    Log "OLLAMA_HOST=127.0.0.1 (localhost only)"
-} else {
-    Log "Warning: Ollama not installed — ODIN will run without a local model until you install Ollama from https://ollama.com"
-}
+# Lock Ollama to localhost — security
+[System.Environment]::SetEnvironmentVariable("OLLAMA_HOST", "127.0.0.1", "User")
 
-# ─── 3. Create virtual environment ───────────────────────────────────────────
+# ── 3. Virtual environment ────────────────────────────────────────────────────
 
-Log "Creating Python virtual environment..."
-$VenvDir    = Join-Path $AppDir ".venv"
-$VenvPython = Join-Path $VenvDir "Scripts\python.exe"
-$VenvPip    = Join-Path $VenvDir "Scripts\pip.exe"
+Step "Creating Python environment..."
 
-if (-not (Test-Path $VenvDir)) {
+if (-not (Test-Path $VenvPython)) {
     & $PythonExe -m venv $VenvDir
-    if ($LASTEXITCODE -ne 0) { Die "Failed to create virtual environment." }
+    if ($LASTEXITCODE -ne 0) { Fail "Could not create virtual environment at $VenvDir" }
 }
-Log "Upgrading pip..."
+OK "Environment: $VenvDir"
+
+# ── 4. Install ODIN package ───────────────────────────────────────────────────
+
+Step "Installing ODIN and dependencies..."
+
 & $VenvPython -m pip install --upgrade pip --quiet
-Log "Virtual environment ready: $VenvDir"
+& $VenvPython -m pip install -e $SrcDir --quiet
+if ($LASTEXITCODE -ne 0) { Fail "Package installation failed." }
+OK "All packages installed."
 
-# ─── 4. Install ODIN substrate (odinclaw) ────────────────────────────────────
+# ── 5. Write config.json ──────────────────────────────────────────────────────
 
-Log "Installing ODIN substrate package..."
-$SubstrateSrc = Join-Path $AppDir "src\odinclaw"
+Step "Writing configuration..."
 
-if (Test-Path (Join-Path $SubstrateSrc "pyproject.toml")) {
-    Log "Installing from bundled source: $SubstrateSrc"
-    & $VenvPip install -e $SubstrateSrc --quiet
-} else {
-    Log "Bundled substrate not found — installing from GitHub..."
-    & $VenvPip install "git+https://github.com/OdinLawProject/odinclaw.git" --quiet
-}
-if ($LASTEXITCODE -ne 0) { Die "ODIN substrate install failed. See $LogFile" }
-Log "ODIN substrate installed"
+New-Item -ItemType Directory -Force -Path $DataDir | Out-Null
 
-# ─── 5. Install ODIN governed interpreter (odinclaw-app) ─────────────────────
+@{
+    model             = $Model
+    model_provider    = "ollama"
+    api_base          = "http://localhost:11434"
+    ollama_exe        = $OllamaExe
+    data_dir          = $DataDir
+    session_name      = "odin-session"
+    installed_at      = (Get-Date -Format "o")
+    installer_version = "1.0.0"
+} | ConvertTo-Json -Depth 3 | Set-Content "$DataDir\config.json" -Encoding UTF8
 
-Log "Installing ODIN governed interpreter..."
-$AppSrc = Join-Path $AppDir "src\odin-app"
+OK "Config: $DataDir\config.json"
 
-if (Test-Path (Join-Path $AppSrc "pyproject.toml")) {
-    Log "Installing from bundled source: $AppSrc"
-    & $VenvPip install -e $AppSrc --quiet
-} else {
-    Log "Bundled app source not found — installing from GitHub..."
-    & $VenvPip install "git+https://github.com/OdinLawProject/odinclaw-app.git" --quiet
-}
-if ($LASTEXITCODE -ne 0) { Die "ODIN interpreter install failed. See $LogFile" }
-Log "ODIN interpreter installed"
+# ── 6. Write ODIN.bat launcher ────────────────────────────────────────────────
 
-# ─── 6. Write odin.bat launcher ──────────────────────────────────────────────
+Step "Writing launcher..."
 
-Log "Writing odin.bat launcher..."
-$LauncherPath = Join-Path $AppDir "odin.bat"
+@"
+@echo off
+title ODIN - Governed AI
+chcp 65001 > nul
+set PYTHONUTF8=1
+set PYTHONIOENCODING=utf-8
+set OLLAMA_HOST=127.0.0.1
+"$VenvPython" -m odinclaw.launcher
+if errorlevel 1 pause
+"@ | Set-Content "$InstallDir\ODIN.bat" -Encoding ASCII
 
-$Bat = "@echo off`r`n"
-$Bat += "setlocal`r`n"
-$Bat += "set ODIN_DIR=$AppDir`r`n"
-$Bat += "call `"$VenvDir\Scripts\activate.bat`"`r`n"
-$Bat += "`r`n"
-$Bat += "if /I `"%1`"==`"status`" (`r`n"
-$Bat += "    python -c `"from odinclaw.odin.orchestration.lifecycle import build_lifecycle; print('ODIN substrate: OK')`"`r`n"
-$Bat += "    goto :end`r`n"
-$Bat += ")`r`n"
-$Bat += "if /I `"%1`"==`"pull-model`" (`r`n"
-$Bat += "    ollama pull llama3.2:3b`r`n"
-$Bat += "    goto :end`r`n"
-$Bat += ")`r`n"
-$Bat += "if /I `"%1`"==`"pentest`" (`r`n"
-$Bat += "    for %%f in (`"$AppSrc\pentest\*.py`") do python `"%%f`"`r`n"
-$Bat += "    goto :end`r`n"
-$Bat += ")`r`n"
-$Bat += "`r`n"
-$Bat += "rem Default: launch ODIN governed interpreter`r`n"
-$Bat += "python -m interpreter %*`r`n"
-$Bat += ":end`r`n"
+OK "Launcher: $InstallDir\ODIN.bat"
 
-[System.IO.File]::WriteAllText($LauncherPath, $Bat, [System.Text.Encoding]::ASCII)
-Log "Launcher: $LauncherPath"
+# ── 7. Background model download ──────────────────────────────────────────────
 
-# ─── 7. Pull default model in background ─────────────────────────────────────
+Step "Starting model download in background..."
+Write-Host "            $Model" -ForegroundColor DarkCyan
+Write-Host "            This continues after the installer closes." -ForegroundColor DarkCyan
 
-if ($OllamaExe) {
-    Log "Starting background pull of llama3.2:3b (continues after installer closes)..."
-    Start-Process -FilePath $OllamaExe -ArgumentList "pull", "llama3.2:3b" `
+try {
+    Start-Process -FilePath $OllamaExe -ArgumentList "serve" `
         -WindowStyle Hidden -ErrorAction SilentlyContinue
+    Start-Sleep -Seconds 2
+    Start-Process -FilePath $OllamaExe -ArgumentList "pull", $Model `
+        -WindowStyle Hidden -ErrorAction SilentlyContinue
+    OK "Download started."
+} catch {
+    Warn "Could not start background download. ODIN will pull the model on first launch."
 }
 
-# ─── 8. Smoke test ───────────────────────────────────────────────────────────
+# ── 8. Auto-start (optional task) ────────────────────────────────────────────
 
-Log "Running substrate smoke test..."
-$SmokeScript = @"
-import tempfile
-from pathlib import Path
-tmp = Path(tempfile.mkdtemp())
-from odinclaw.odin.orchestration.lifecycle import build_lifecycle
-lc = build_lifecycle(tmp)
-lc.startup()
-lc.shutdown()
-from odinclaw.odin.audit.receipt_chain import ReceiptChain
-ok, msg = ReceiptChain(tmp / 'receipts.jsonl').verify_chain()
-assert ok, f'Receipt chain FAILED: {msg}'
-print('ODIN substrate smoke test: PASSED')
-print('Receipt chain:', msg)
-"@
-
-$SmokeFile = "$env:TEMP\odin_smoke.py"
-[System.IO.File]::WriteAllText($SmokeFile, $SmokeScript)
-$out = & $VenvPython $SmokeFile 2>&1
-$out | ForEach-Object { Log $_ }
-if ($LASTEXITCODE -ne 0) {
-    Log "Warning: smoke test failed — install may still work, check $LogFile"
-} else {
-    Log "Smoke test passed"
+if ($AutoStart -eq "true") {
+    Step "Registering startup entry..."
+    $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+    Set-ItemProperty -Path $regPath -Name "ODINClaw" `
+        -Value "cmd /c start `"`" /min `"$InstallDir\ODIN.bat`""
+    OK "ODIN will start with Windows."
 }
 
-# ─── Done ─────────────────────────────────────────────────────────────────────
+# ── Done ──────────────────────────────────────────────────────────────────────
 
-Log "ODIN setup complete."
-Log "Launcher: $LauncherPath"
-Log "Log:      $LogFile"
+Write-Host ""
+Write-Host "  ============================================================" -ForegroundColor DarkCyan
+Write-Host "    Setup complete." -ForegroundColor Green
+Write-Host "    Double-click the ODIN shortcut on your desktop to launch." -ForegroundColor White
+Write-Host "    Your AI model is downloading in the background." -ForegroundColor DarkCyan
+Write-Host "  ============================================================" -ForegroundColor DarkCyan
+Write-Host ""
