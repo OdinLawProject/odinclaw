@@ -136,7 +136,14 @@ the capability improvement cycle.
 ## What Has Been Built
 
 The ODIN substrate is a working implementation of the architecture-first approach,
-built publicly and tested on consumer hardware:
+built publicly and tested on consumer hardware.
+
+ODIN's substrate handles governance, memory authority, burden regulation, repair,
+and high-level orchestration natively on CPU. LLMs are treated as optional
+downstream specialists. When ODIN encounters a new task, it may choose to use a
+model. After performing the task a few times, it extracts the successful process
+chain, stores it, and automates it. Future executions of that chain then run
+without requiring model inference.
 
 - **Governance preflight** — typed action classification, ALLOW / HOLD / ESCALATE / DENY, with HMAC-chained receipts per decision
 - **Durable memory authority** — tiered (canon / provisional / conflict) with approval-gated mutations and cross-session continuity
