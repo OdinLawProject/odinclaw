@@ -1,20 +1,22 @@
-# GPU-Heavy Inference vs Architecture-First on CPU
-### A Technical Contrast
+# GPU-Heavy Inference vs Architecture-First AI: A Technical Contrast
 
 ---
 
-## The Standard Bet
+## Overview
 
-The dominant strategy in AI development since 2020 has been a simple one:
+The dominant strategy in frontier AI has been scaling model size and GPU compute.
+An alternative is to move governance, memory authority, and state regulation into
+explicit architectural layers that run on CPU, treating models as swappable
+downstream specialists rather than the entire system.
 
-> *More compute → better model → better behavior.*
-
-Scale the weights, scale the cluster, scale the safety fine-tuning budget alongside it.
-This bet has paid off impressively for capability. It has not paid off for governance.
+This document contrasts the two approaches on cost, safety, auditability, and
+hardware requirements. It is not an argument that GPU scaling has failed —
+it has delivered impressive capability gains. It is an argument that capability
+and governance are separable concerns, and that separating them has practical benefits.
 
 ---
 
-## What GPU-Heavy Inference Actually Looks Like
+## GPU-Heavy Inference
 
 ```
 User prompt
@@ -36,18 +38,18 @@ User prompt
 Response
 ```
 
-Everything lives inside the weights or the context window. The model is the governor
-and the governed simultaneously.
+Safety rules, memory, and governance all live inside the weights or the context
+window — the same place as general capability. A forward pass handles everything.
 
-**Cost per governance decision:** proportional to model size.
-**Auditability:** none — no external record unless you build one separately.
-**Session continuity:** none — state does not survive a restart.
-**Failure mode:** jailbreak, confusion, prompt injection, or simply a weaker model
-  → governance evaporates.
+**Cost per governance decision:** proportional to model size.  
+**Audit trail:** none built-in; requires a separate external system.  
+**Session continuity:** context window only; state does not survive a restart.  
+**Failure mode:** jailbreak, prompt injection, or distribution shift degrades
+governance alongside capability.
 
 ---
 
-## What Architecture-First on CPU Looks Like
+## Architecture-First on CPU
 
 ```
 User prompt
@@ -79,15 +81,14 @@ User prompt
 Response
 ```
 
-The governance layer is pure Python, typed contracts, state machines.
-It runs on any hardware that can run Python 3.11.
+Governance runs as typed contracts and state machines in a separate layer.
+The model receives only requests that have already been preflighted and approved.
 
-**Cost per governance decision:** microseconds, no GPU involved.
-**Auditability:** every decision produces a cryptographically chained receipt.
-**Session continuity:** memory authority persists across restarts; HMAC chain
-  links sessions.
-**Failure mode:** a bad model produces a bad *response* — it cannot bypass
-  the preflight that decided whether to run at all.
+**Cost per governance decision:** microseconds, no GPU involved.  
+**Audit trail:** every decision produces a cryptographically chained receipt.  
+**Session continuity:** memory authority persists across restarts via HMAC chain.  
+**Failure mode:** a compromised model produces a bad response — it cannot retroactively
+bypass the preflight that ran before it.
 
 ---
 
@@ -97,23 +98,22 @@ It runs on any hardware that can run Python 3.11.
 |---|---|---|
 | **Where governance lives** | Inside model weights | Separate substrate layer |
 | **Governance cost** | Full inference pass | ~0ms (typed state machine) |
-| **Safety survives jailbreak?** | No — model is the governor | Yes — preflight is architectural |
+| **Safety survives jailbreak?** | Depends on model | Preflight is pre-model |
 | **Session memory** | Context window only | Tiered durable store, cross-session |
 | **Audit trail** | Optional, external | Built-in, HMAC-chained, mandatory |
-| **Model portability** | Fixed to training regime | Any model, swappable |
-| **Hardware requirement** | GPU cluster | CPU sufficient for governance |
-| **Failure blast radius** | Model failure = full loss | Model failure ≠ governance failure |
-| **Verifiable properties** | Model-dependent claims | Inspectable code, typed contracts |
+| **Model portability** | Coupled to training regime | Any model, swappable |
+| **Hardware requirement** | GPU for all operations | CPU sufficient for governance |
+| **Failure blast radius** | Model failure = governance failure | Model failure ≠ governance failure |
 
 ---
 
 ## The Key Asymmetry
 
-A 405B model with safety fine-tuning is making a statistical prediction that
-the next token is the "safe" one. The prediction is as reliable as the training
-distribution.
+A model with safety fine-tuning is making a statistical prediction that the next
+token is the safe one. The prediction is as reliable as the training distribution,
+and re-validation is required whenever the model changes.
 
-A typed preflight gate running on a CPU is evaluating a deterministic function:
+A typed preflight gate is evaluating a deterministic function:
 
 ```python
 def preflight_action(request: ActionRequest) -> GovernanceDecision:
@@ -125,43 +125,47 @@ def preflight_action(request: ActionRequest) -> GovernanceDecision:
     return GovernanceDecision(outcome=GovernanceOutcome.ALLOW, ...)
 ```
 
-You can read it. You can test it. You can audit every call against a receipt chain.
-You cannot jailbreak it by asking nicely.
+It can be read, tested, and audited against a receipt chain. Swapping the model
+underneath does not change its behavior. This is the practical consequence of
+separating governance from capability: one can change without invalidating the other.
 
 ---
 
-## What This Means in Practice
+## What This Means for Safety Validation
 
-ODIN runs its entire governance and memory substrate on a consumer laptop:
+When governance lives inside the model:
+- Safety properties must be re-validated from scratch with each new model version
+- A capability improvement may degrade safety if training objectives conflict
+- No external system can verify that governance was applied to a specific action
 
-- **Governance preflight:** CPU, ~0ms per action
-- **Memory authority:** SQLite-compatible store, any disk
-- **Receipt chain:** append-only JSONL, HMAC-SHA256, survives process restart
-- **State regulation:** burden scoring, pacing, degraded mode — pure Python
-- **Model:** optional GPU acceleration, fully swappable
-
-The model is a capability layer. The substrate is the constitutional layer.
-They are not the same thing, and they should not run in the same place.
-
----
-
-## The Practical Implication for Safety Research
-
-If governance lives inside the model, then:
-- Every new model requires re-validating safety properties from scratch
-- A capability improvement can degrade safety if training objectives conflict
-- No external party can verify that governance was applied to a specific action
-
-If governance lives in the substrate, then:
+When governance lives in the substrate:
 - The same governance layer works with qwen2.5:7b, llama3, claude, or GPT-4
-- Improving the model improves capability without touching governance
-- Every action produces a verifiable, externally auditable receipt
+- Model improvements affect capability without touching governance
+- Every action produces a verifiable receipt — inspectable independently of the model
 
-The bet on GPU scale is a bet that alignment training will eventually converge
-on reliably safe behavior. The architectural bet is that you don't need to trust
-the model to govern itself if the governance happens before the model runs.
+Open questions remain on the architectural side: how this scales to millions of
+concurrent agents, what the right trust boundary looks like in distributed settings,
+and whether architectural governance can be made expressive enough to cover complex
+multi-step reasoning chains. These are active problems.
 
 ---
 
-*ODIN substrate source: [github.com/Odin-Source/Odin](https://github.com/Odin-Source/Odin)*
+## What Has Been Built
+
+The ODIN substrate is the governance and memory floor described above —
+built publicly, tested on consumer hardware:
+
+- **Governance preflight** — typed action classification, ALLOW / HOLD / ESCALATE / DENY  
+- **HMAC receipt chain** — append-only, cryptographically linked, survives process restart  
+- **Durable memory authority** — tiered (canon / provisional / conflict), approval-gated mutations  
+- **Burden and state regulation** — burden scoring, pacing, degraded mode, safe-hold trigger  
+- **Repair and rollback** — damage detection, recovery planning, evidence linking  
+- **Federation** — single-node readiness gate, contract validation, sync safety, node identity  
+
+The model (qwen2.5:7b in testing) connects as a downstream consumer.
+Governance behavior does not change when the model is swapped.
+
+---
+
+*Source: [github.com/Odin-Source/Odin](https://github.com/Odin-Source/Odin)*  
 *Technical note: [ODIN_Technical_Note_V1.2.md](ODIN_Technical_Note_V1.2.md)*
