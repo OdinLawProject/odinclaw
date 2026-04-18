@@ -9,6 +9,10 @@ OdinClaw is designed to be the ODIN governance layer woven into an OpenClaw-comp
 interaction shell. The substrate is complete and tested. Shell integration is the
 active work.
 
+The governance and memory substrate runs entirely on **CPU** — no GPU required for
+safety, auditing, or state regulation. The model is a swappable consumer inside the
+substrate, not the owner of the rules that constrain it.
+
 ---
 
 ## Architecture
@@ -43,10 +47,12 @@ action request
 | 3 | Durable memory authority | Complete |
 | 4 | Governance preflight — allow / hold / escalate / deny | Complete |
 | 5 | Trust and immune bridge | Complete |
-| 6 | Repair and rollback | Complete |
+| 6 | Codex of Humanity | Complete |
 | 7 | State and burden signals, overload, pacing | Complete |
-| 8 | Shell integration (OpenClaw fork) | Active |
-| 9 | Federation (multi-node) | Planned |
+| 7b | Repair and rollback | Complete |
+| 8 | Federation — readiness gate, contract validator, sync safety, node identity | Complete |
+| 9 | Shell integration (OpenClaw fork) | Active |
+| 10–36 | Full 36-layer organismic architecture | Planned |
 
 ---
 
@@ -118,11 +124,37 @@ tests/                79 passing tests across all phases
 
 ---
 
+## Why Not Just Scale Up?
+
+The standard bet in AI development is: *more compute → bigger model → better behavior.*
+That bet has paid off for capability. It has not paid off for governance.
+
+When safety rules live inside model weights, the model is the governor and the
+governed simultaneously. A jailbreak, prompt injection, or simply a weaker model
+removes both the capability and the safety guarantee at the same time.
+
+ODIN's governance substrate runs on **CPU** and enforces constraints *before* the
+model sees the request. The model is a consumer, not the owner of its own rules.
+
+| Property | GPU-heavy inference | ODIN architecture-first |
+|---|---|---|
+| Governance lives | Inside model weights | Separate CPU substrate |
+| Safety survives jailbreak? | No | Yes — preflight is pre-model |
+| Audit trail | Optional, external | Built-in, HMAC-chained |
+| Session memory | Context window | Tiered durable store |
+| Model portability | Fixed to training | Any model, swappable |
+
+**→ [Full technical contrast: GPU-Heavy Inference vs Architecture-First on CPU](docs/GPU_vs_ARCHITECTURE.md)**
+
+---
+
 ## Research
 
 The theoretical foundation for OdinClaw and the ODIN architecture is documented
 in:
 
+- [GPU vs Architecture contrast](docs/GPU_vs_ARCHITECTURE.md) — Technical post
+  comparing GPU-heavy inference with architecture-first CPU governance
 - [ODIN Whitepaper](docs/ODIN_WHITEPAPER.md) — Organismic Intelligence Hypothesis,
   36-layer architecture, formal claims, economic implications
 - [ODIN Thesis](docs/ODIN_THESIS.md) — Full academic treatment, 12 chapters,
