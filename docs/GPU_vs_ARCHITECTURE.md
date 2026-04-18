@@ -4,15 +4,14 @@
 
 ## Overview
 
-The dominant strategy in frontier AI has been scaling model size and GPU compute.
-An alternative is to move governance, memory authority, and state regulation into
-explicit architectural layers that run on CPU, treating models as swappable
-downstream specialists rather than the entire system.
+The dominant strategy in frontier AI has been scaling model size and GPU compute —
+and it has delivered impressive capability gains. An alternative worth exploring is
+to move governance, memory authority, and state regulation into explicit architectural
+layers that run on CPU, treating models as swappable downstream specialists rather
+than the entire system.
 
 This document contrasts the two approaches on cost, safety, auditability, and
-hardware requirements. It is not an argument that GPU scaling has failed —
-it has delivered impressive capability gains. It is an argument that capability
-and governance are separable concerns, and that separating them has practical benefits.
+hardware requirements.
 
 ---
 
@@ -38,14 +37,9 @@ User prompt
 Response
 ```
 
-Safety rules, memory, and governance all live inside the weights or the context
-window — the same place as general capability. A forward pass handles everything.
-
-**Cost per governance decision:** proportional to model size.  
-**Audit trail:** none built-in; requires a separate external system.  
-**Session continuity:** context window only; state does not survive a restart.  
-**Failure mode:** jailbreak, prompt injection, or distribution shift degrades
-governance alongside capability.
+Capability, safety, memory, and governance all live inside the same weights.
+A forward pass handles everything — which keeps the architecture simple, but means
+governance reliability is tied to model reliability.
 
 ---
 
@@ -74,21 +68,15 @@ User prompt
 ┌─────────────────────────────────────────┐
 │  MODEL  (GPU optional)                  │
 │  consumer only — no governance role     │
-│  qwen2.5:7b / llama3 / claude / GPT-4  │
 └─────────────────────────────────────────┘
       │
       ▼
 Response
 ```
 
-Governance runs as typed contracts and state machines in a separate layer.
-The model receives only requests that have already been preflighted and approved.
-
-**Cost per governance decision:** microseconds, no GPU involved.  
-**Audit trail:** every decision produces a cryptographically chained receipt.  
-**Session continuity:** memory authority persists across restarts via HMAC chain.  
-**Failure mode:** a compromised model produces a bad response — it cannot retroactively
-bypass the preflight that ran before it.
+Governance runs as typed contracts and state machines before the model sees the
+request. The model's job is generation; the substrate's job is deciding whether
+generation should proceed and recording that it did.
 
 ---
 
@@ -111,7 +99,7 @@ bypass the preflight that ran before it.
 
 A model with safety fine-tuning is making a statistical prediction that the next
 token is the safe one. The prediction is as reliable as the training distribution,
-and re-validation is required whenever the model changes.
+and safety properties must be re-validated whenever the model changes.
 
 A typed preflight gate is evaluating a deterministic function:
 
@@ -125,45 +113,51 @@ def preflight_action(request: ActionRequest) -> GovernanceDecision:
     return GovernanceDecision(outcome=GovernanceOutcome.ALLOW, ...)
 ```
 
-It can be read, tested, and audited against a receipt chain. Swapping the model
-underneath does not change its behavior. This is the practical consequence of
-separating governance from capability: one can change without invalidating the other.
+It can be read, tested, and audited against a receipt chain independently of the
+model. Swapping the model underneath does not change its behavior.
 
 ---
 
-## What This Means for Safety Validation
+## Implications for Safety
 
-When governance lives inside the model:
-- Safety properties must be re-validated from scratch with each new model version
-- A capability improvement may degrade safety if training objectives conflict
-- No external system can verify that governance was applied to a specific action
+When governance lives inside the model, each new model version requires
+re-validating safety properties from scratch, and no external system can verify
+that governance was applied to a specific action. When governance lives in the
+substrate, the same layer works with any model, every decision produces an
+auditable receipt, and model improvements affect capability without touching
+governance behavior.
 
-When governance lives in the substrate:
-- The same governance layer works with qwen2.5:7b, llama3, claude, or GPT-4
-- Model improvements affect capability without touching governance
-- Every action produces a verifiable receipt — inspectable independently of the model
-
-Open questions remain on the architectural side: how this scales to millions of
-concurrent agents, what the right trust boundary looks like in distributed settings,
-and whether architectural governance can be made expressive enough to cover complex
-multi-step reasoning chains. These are active problems.
+The two approaches are not mutually exclusive. Architectural governance does not
+prevent investment in alignment — it decouples the safety validation problem from
+the capability improvement cycle.
 
 ---
 
 ## What Has Been Built
 
-The ODIN substrate is the governance and memory floor described above —
-built publicly, tested on consumer hardware:
+The ODIN substrate is a working implementation of the architecture-first approach,
+built publicly and tested on consumer hardware:
 
-- **Governance preflight** — typed action classification, ALLOW / HOLD / ESCALATE / DENY  
-- **HMAC receipt chain** — append-only, cryptographically linked, survives process restart  
-- **Durable memory authority** — tiered (canon / provisional / conflict), approval-gated mutations  
-- **Burden and state regulation** — burden scoring, pacing, degraded mode, safe-hold trigger  
-- **Repair and rollback** — damage detection, recovery planning, evidence linking  
-- **Federation** — single-node readiness gate, contract validation, sync safety, node identity  
+- **Governance preflight** — typed action classification, ALLOW / HOLD / ESCALATE / DENY, with HMAC-chained receipts per decision
+- **Durable memory authority** — tiered (canon / provisional / conflict) with approval-gated mutations and cross-session continuity
+- **Burden and state regulation** — runtime burden scoring, pacing, degraded mode, and safe-hold trigger (P7)
+- **Repair and rollback** — damage detection, recovery planning, evidence linking to receipt chain (P7b)
+- **Federation** — single-node readiness gate, contract validation, sync safety, node identity coordination (P8)
 
-The model (qwen2.5:7b in testing) connects as a downstream consumer.
-Governance behavior does not change when the model is swapped.
+Governance behavior does not change when the underlying model is swapped.
+
+---
+
+## Closing
+
+Open questions remain around scaling architectural governance to large agent swarms,
+distributed federation, and complex multi-step reasoning chains. These are active
+areas of exploration in the ODIN project.
+
+The goal is not to replace GPU scaling, but to offer a complementary path that
+reduces inference dependence for governance, continuity, and state regulation —
+potentially making capable AI more accessible, auditable, and efficient on modest
+hardware.
 
 ---
 
