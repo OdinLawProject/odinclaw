@@ -136,22 +136,41 @@ the capability improvement cycle.
 ## What Has Been Built
 
 The ODIN substrate is a working implementation of the architecture-first approach,
-built publicly and tested on consumer hardware.
+built publicly and tested on consumer hardware. CI runs on Python 3.12 and 3.13
+on every merge to main.
 
 ODIN's substrate handles governance, memory authority, burden regulation, repair,
 and high-level orchestration natively on CPU. LLMs are treated as optional
-downstream specialists. When ODIN encounters a new task, it may choose to use a
-model. After performing the task a few times, it extracts the successful process
-chain, stores it, and automates it. Future executions of that chain then run
-without requiring model inference.
+downstream specialists — and as the architecture matures, increasingly unnecessary
+ones. When ODIN encounters a new task, it may choose to use a model. After
+performing the task a few times, it extracts the successful process chain, stores
+it, and automates it. Future executions of that chain then run without requiring
+model inference at all.
 
-- **Governance preflight** — typed action classification, ALLOW / HOLD / ESCALATE / DENY, with HMAC-chained receipts per decision
-- **Durable memory authority** — tiered (canon / provisional / conflict) with approval-gated mutations and cross-session continuity
-- **Burden and state regulation** — runtime burden scoring, pacing, degraded mode, and safe-hold trigger (P7)
-- **Repair and rollback** — damage detection, recovery planning, evidence linking to receipt chain (P7b)
-- **Federation** — single-node readiness gate, contract validation, sync safety, node identity coordination (P8)
+The long-term target: when all 36 layers are operational, an LLM is entirely
+optional. The architecture's governance, memory, reasoning, perception, and
+regulation layers will handle the full operational cycle. A model may be called as
+a specialist for generation tasks — or not called at all.
 
-Governance behavior does not change when the underlying model is swapped.
+**Group A — Constitution & Executive (L1–L8)** ✅ complete
+
+- **L1 Governance preflight** — typed action classification, ALLOW / HOLD / ESCALATE / DENY, HMAC-chained receipts per decision
+- **L2 Transport & signal routing** — SignalRouter, 7 signal kinds, handler registry
+- **L3 Context engine** — session context, continuity links, cross-session identity
+- **L4 Trust classification** — TrustClass ladder, TrustThresholdEvaluator, TrustProgressionTracker, ConflictArbiter, ConfidenceUpdater
+- **L5 Durable memory authority** — tiered canon / provisional / conflict, approval-gated mutations, cross-session continuity
+- **L6 Continuity & receipts** — HMAC receipt chain, ContinuityEvidenceStore, cross-session links
+- **L7 Homeostasis, burden & drainage** — burden scoring, pacing governor, waste drainer, safe-hold trigger, degraded mode
+- **L8 Repair & rollback** — damage detection, recovery planner, compensation engine, rollback evidence
+
+**Group B — Receptor Ecology & Perception (L9–L12)** ✅ complete
+
+- **L9 Sensory gating** — burden/threat-driven PASS / DEFER / FILTER / BLOCK gate on incoming signals
+- **L10 Interoceptive reporter** — maps HomeostaticState to visceral tone (RELAXED / ACTIVE / STRAINED / DISTRESSED) with fatigue and tension scores
+- **L11 Nociceptive system** — pain event registry, chronic escalation after 3 same-kind events, acknowledgment tracking
+- **L12 Attachment ledger** — relational bond tracking per entity, reinforcement/breach/repair lifecycle
+
+**1,289 tests passing. Governance behavior does not change when the underlying model is swapped or removed.**
 
 ---
 
@@ -159,12 +178,13 @@ Governance behavior does not change when the underlying model is swapped.
 
 Open questions remain around scaling architectural governance to large agent swarms,
 distributed federation, and complex multi-step reasoning chains. These are active
-areas of exploration in the ODIN project.
+areas of exploration as the remaining 24 layers are built out.
 
-The goal is not to replace GPU scaling, but to offer a complementary path that
-reduces inference dependence for governance, continuity, and state regulation —
-potentially making capable AI more accessible, auditable, and efficient on modest
-hardware.
+The goal is not to replace GPU scaling — it is to show that an architecture can be
+built where a GPU is not required for governance, continuity, state regulation, or
+organism-wide coordination. As the 36-layer architecture completes, ODIN moves from
+"LLM with a governance wrapper" toward a system in which an LLM is one optional
+specialist among many — callable when useful, absent when not needed.
 
 ---
 
